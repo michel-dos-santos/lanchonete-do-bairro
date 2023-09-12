@@ -1,0 +1,5 @@
+2023-09-10 10:58:35,483 INFO br.com.lanchonete.Application [main] Starting Application using Java 17.0.8 with PID 7326 (/mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro/application/target/classes started by michel in /mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro)
+2023-09-10 10:58:35,489 DEBUG br.com.lanchonete.Application [main] Running with Spring Boot v3.1.3, Spring v6.0.11
+2023-09-10 10:58:35,490 INFO br.com.lanchonete.Application [main] No active profile set, falling back to 1 default profile: "default"
+2023-09-10 10:58:44,424 INFO br.com.lanchonete.Application [main] Started Application in 10.004 seconds (process running for 10.887)
+2023-09-10 11:01:20,068 INFO br.com.lanchonete.usecase.SaveClientUsecase [http-nio-8010-exec-8] Iniciando o processo de criação do cliente no sistema

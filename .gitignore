@@ -1,0 +1,4 @@
+# Project exclude paths
+/application/target/
+/domain/target/
+/infrastructure/target/

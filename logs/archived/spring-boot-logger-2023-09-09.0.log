@@ -1,0 +1,59 @@
+2023-09-09 22:36:21,582 INFO o.s.b.StartupInfoLogger [main] Starting Application using Java 17.0.8 with PID 7151 (/mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro/application/target/classes started by michel in /mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro)
+2023-09-09 22:36:21,584 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.1.3, Spring v6.0.11
+2023-09-09 22:36:21,585 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-09-09 22:36:24,881 INFO o.s.b.StartupInfoLogger [main] Started Application in 3.894 seconds (process running for 4.854)
+2023-09-09 22:36:30,602 INFO b.c.l.r.l.Log4jRepository [http-nio-8010-exec-1] Iniciando o processo de criação do cliente no sistema
+2023-09-09 22:42:39,389 INFO o.s.b.StartupInfoLogger [main] Starting Application using Java 17.0.8 with PID 7897 (/mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro/application/target/classes started by michel in /mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro)
+2023-09-09 22:42:39,390 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.1.3, Spring v6.0.11
+2023-09-09 22:42:39,392 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-09-09 22:42:42,756 INFO o.s.b.StartupInfoLogger [main] Started Application in 3.965 seconds (process running for 4.385)
+2023-09-09 22:42:48,147 INFO b.c.l.r.l.Log4jRepository [http-nio-8010-exec-1] Iniciando o processo de criação do cliente no sistema
+2023-09-09 23:01:57,244 INFO o.s.b.StartupInfoLogger [main] Starting Application using Java 17.0.8 with PID 8924 (/mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro/application/target/classes started by michel in /mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro)
+2023-09-09 23:01:57,246 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.1.3, Spring v6.0.11
+2023-09-09 23:01:57,247 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-09-09 23:02:00,735 INFO o.s.b.StartupInfoLogger [main] Started Application in 4.265 seconds (process running for 5.038)
+2023-09-09 23:02:05,870 INFO b.c.l.r.l.Log4jRepository [http-nio-8010-exec-1] Iniciando o processo de criação do cliente no sistema
+2023-09-09 23:04:41,099 INFO o.s.b.StartupInfoLogger [main] Starting Application using Java 17.0.8 with PID 9217 (/mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro/application/target/classes started by michel in /mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro)
+2023-09-09 23:04:41,101 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.1.3, Spring v6.0.11
+2023-09-09 23:04:41,102 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-09-09 23:04:44,471 INFO o.s.b.StartupInfoLogger [main] Started Application in 4.02 seconds (process running for 4.465)
+2023-09-09 23:05:08,523 INFO b.c.l.r.l.Log4jRepository [http-nio-8010-exec-1] Iniciando o processo de criação do cliente no sistema
+2023-09-09 23:06:33,310 INFO o.s.b.StartupInfoLogger [main] Starting Application using Java 17.0.8 with PID 9401 (/mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro/application/target/classes started by michel in /mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro)
+2023-09-09 23:06:33,311 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.1.3, Spring v6.0.11
+2023-09-09 23:06:33,312 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-09-09 23:06:36,752 INFO o.s.b.StartupInfoLogger [main] Started Application in 4.047 seconds (process running for 4.483)
+2023-09-09 23:11:51,756 INFO o.s.b.StartupInfoLogger [main] Starting Application using Java 17.0.8 with PID 10533 (/mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro/application/target/classes started by michel in /mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro)
+2023-09-09 23:11:51,758 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.1.3, Spring v6.0.11
+2023-09-09 23:11:51,760 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-09-09 23:11:55,187 INFO o.s.b.StartupInfoLogger [main] Started Application in 4.115 seconds (process running for 4.503)
+2023-09-09 23:12:02,155 INFO b.c.l.r.l.Log4jRepository [http-nio-8010-exec-1] Iniciando o processo de criação do cliente no sistema
+2023-09-09 23:13:33,302 INFO o.s.b.StartupInfoLogger [main] Starting Application using Java 17.0.8 with PID 10727 (/mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro/application/target/classes started by michel in /mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro)
+2023-09-09 23:13:33,303 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.1.3, Spring v6.0.11
+2023-09-09 23:13:33,304 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-09-09 23:13:36,700 INFO o.s.b.StartupInfoLogger [main] Started Application in 4.128 seconds (process running for 4.528)
+2023-09-09 23:13:39,086 INFO b.c.l.r.l.Log4jRepository [http-nio-8010-exec-1] Iniciando o processo de criação do cliente no sistema
+2023-09-09 23:19:20,582 INFO o.s.b.StartupInfoLogger [main] Starting Application using Java 17.0.8 with PID 11015 (/mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro/application/target/classes started by michel in /mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro)
+2023-09-09 23:19:20,584 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.1.3, Spring v6.0.11
+2023-09-09 23:19:20,584 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-09-09 23:19:23,912 INFO o.s.b.StartupInfoLogger [main] Started Application in 3.976 seconds (process running for 4.343)
+2023-09-09 23:19:32,496 INFO b.c.l.r.l.Log4jRepository [http-nio-8010-exec-1] Iniciando o processo de criação do cliente no sistema
+2023-09-09 23:21:06,283 INFO o.s.b.StartupInfoLogger [main] Starting Application using Java 17.0.8 with PID 11208 (/mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro/application/target/classes started by michel in /mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro)
+2023-09-09 23:21:06,285 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.1.3, Spring v6.0.11
+2023-09-09 23:21:06,287 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-09-09 23:21:09,942 INFO o.s.b.StartupInfoLogger [main] Started Application in 4.382 seconds (process running for 4.804)
+2023-09-09 23:21:12,541 INFO b.c.l.r.l.Log4jRepository [http-nio-8010-exec-1] Iniciando o processo de criação do cliente no sistema
+2023-09-09 23:21:42,749 INFO o.s.b.StartupInfoLogger [main] Starting Application using Java 17.0.8 with PID 11363 (/mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro/application/target/classes started by michel in /mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro)
+2023-09-09 23:21:42,750 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.1.3, Spring v6.0.11
+2023-09-09 23:21:42,751 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-09-09 23:21:46,049 INFO o.s.b.StartupInfoLogger [main] Started Application in 3.914 seconds (process running for 4.339)
+2023-09-09 23:21:53,599 INFO b.c.l.r.l.Log4jRepository [http-nio-8010-exec-1] Iniciando o processo de criação do cliente no sistema
+2023-09-09 23:27:41,433 INFO br.com.lanchonete.Application [main] Starting Application using Java 17.0.8 with PID 12197 (/mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro/application/target/classes started by michel in /mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro)
+2023-09-09 23:27:41,435 DEBUG br.com.lanchonete.Application [main] Running with Spring Boot v3.1.3, Spring v6.0.11
+2023-09-09 23:27:41,436 INFO br.com.lanchonete.Application [main] No active profile set, falling back to 1 default profile: "default"
+2023-09-09 23:27:46,026 INFO br.com.lanchonete.Application [main] Started Application in 5.312 seconds (process running for 5.84)
+2023-09-09 23:36:19,563 INFO br.com.lanchonete.Application [main] Starting Application using Java 17.0.8 with PID 12564 (/mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro/application/target/classes started by michel in /mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro)
+2023-09-09 23:36:19,564 DEBUG br.com.lanchonete.Application [main] Running with Spring Boot v3.1.3, Spring v6.0.11
+2023-09-09 23:36:19,565 INFO br.com.lanchonete.Application [main] No active profile set, falling back to 1 default profile: "default"
+2023-09-09 23:36:24,544 INFO br.com.lanchonete.Application [main] Started Application in 5.686 seconds (process running for 6.166)
+2023-09-09 23:36:56,461 INFO br.com.lanchonete.usecase.SaveClientUsecase [http-nio-8010-exec-2] Iniciando o processo de criação do cliente no sistema
+2023-09-09 23:36:57,899 INFO br.com.lanchonete.usecase.SaveClientUsecase [http-nio-8010-exec-3] Iniciando o processo de criação do cliente no sistema

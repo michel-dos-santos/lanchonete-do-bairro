@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.1.3</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>br.com.lanchonete</groupId>
+    <artifactId>lanchonete-do-bairro</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+    <name>lanchonete-do-bairro</name>
+    <description>Projeto destinado a lanchonete do bairro</description>
+
+    <modules>
+        <module>application</module>
+        <module>domain</module>
+        <module>infrastructure</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jeasy</groupId>
+            <artifactId>easy-random-core</artifactId>
+            <version>5.0.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>
