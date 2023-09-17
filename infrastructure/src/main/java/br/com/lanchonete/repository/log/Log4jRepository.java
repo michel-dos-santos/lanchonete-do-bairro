@@ -1,5 +1,6 @@
 package br.com.lanchonete.repository.log;
 
+import br.com.lanchonete.model.LogCode;
 import br.com.lanchonete.port.repository.LogRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,26 +10,26 @@ import org.springframework.stereotype.Component;
 public class Log4jRepository implements LogRepository {
 
     @Override
-    public void debug(Class<?> logClass, String message) {
+    public void debug(Class<?> logClass, LogCode.LogCodeDebug logCode) {
         Logger logger = LoggerFactory.getLogger(logClass);
-        logger.debug(message);
+        logger.debug(String.format("TAG: %s - MESSAGE: %s", logCode.name(), logCode.getDescription()));
     }
 
     @Override
-    public void info(Class<?> logClass, String message) {
+    public void info(Class<?> logClass, LogCode.LogCodeInfo logCode) {
         Logger logger = LoggerFactory.getLogger(logClass);
-        logger.info(message);
+        logger.info(String.format("TAG: %s - MESSAGE: %s", logCode.name(), logCode.getDescription()));
     }
 
     @Override
-    public void warn(Class<?> logClass, String message) {
+    public void warn(Class<?> logClass, LogCode.LogCodeWarn logCode) {
         Logger logger = LoggerFactory.getLogger(logClass);
-        logger.warn(message);
+        logger.warn(String.format("TAG: %s - MESSAGE: %s", logCode.name(), logCode.getDescription()));
     }
 
     @Override
-    public void error(Class<?> logClass, String message) {
+    public void error(Class<?> logClass, LogCode.LogCodeError logCode) {
         Logger logger = LoggerFactory.getLogger(logClass);
-        logger.error(message);
+        logger.error(String.format("TAG: %s - MESSAGE: %s", logCode.name(), logCode.getDescription()));
     }
 }
