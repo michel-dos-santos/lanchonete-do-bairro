@@ -1,27 +1,35 @@
 package br.com.lanchonete.exception;
 
+import java.util.List;
+import java.util.Map;
+
 public class ErrorResponse {
 
-    private String code;
+    private String status;
+    private Integer statusCode;
     private String description;
-    private String message;
+    private List<?> errors;
 
-    public ErrorResponse(String code, String description, String message) {
-        this.code = code;
+    public ErrorResponse(String status, Integer statusCode, String description, List<?> errors) {
+        this.status = status;
+        this.statusCode = statusCode;
         this.description = description;
-        this.message = message;
+        this.errors = errors;
     }
 
-    public String getCode() {
-        return code;
+    public String getStatus() {
+        return status;
+    }
+
+    public Integer getStatusCode() {
+        return statusCode;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public String getMessage() {
-        return message;
+    public List<?> getErrors() {
+        return errors;
     }
-
 }

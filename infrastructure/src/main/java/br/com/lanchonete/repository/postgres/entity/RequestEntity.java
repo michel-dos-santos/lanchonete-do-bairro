@@ -8,7 +8,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -17,9 +16,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "client")
+@Table(name = "request")
 @EntityListeners(AuditingEntityListener.class)
-public class ClientEntity {
+public class RequestEntity {
 
     @Id
     @GeneratedValue
@@ -30,13 +29,17 @@ public class ClientEntity {
     private Date createdAt;
     @LastModifiedDate
     private Date updatedAt;
-    @Column(length = 50, nullable = false)
-    private String name;
-    @Column(length = 14, nullable = false)
-    private String cpf;
-    @Column(length = 50, nullable = false)
-    private String email;
-    @OneToMany(mappedBy="client", cascade = CascadeType.ALL)
-    private List<RequestEntity> requests = new ArrayList<>();
+    @Column(length = 10, nullable = false)
+    private String number;
+    @Enumerated(EnumType.STRING)
+    private StatusType status;
+    @OneToOne
+    @JoinColumn(name = "fk_billing_id")
+    private BillingEntity billing;
+    @ManyToOne
+    @JoinColumn(name="fk_client_id")
+    private ClientEntity client;
+    @OneToMany(mappedBy="request", cascade = CascadeType.ALL)
+    private List<RequestItemEntity> requestItems;
 
 }

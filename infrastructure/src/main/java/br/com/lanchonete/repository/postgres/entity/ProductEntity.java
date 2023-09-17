@@ -8,18 +8,17 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.ArrayList;
+import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "client")
+@Table(name = "product")
 @EntityListeners(AuditingEntityListener.class)
-public class ClientEntity {
+public class ProductEntity {
 
     @Id
     @GeneratedValue
@@ -32,11 +31,14 @@ public class ClientEntity {
     private Date updatedAt;
     @Column(length = 50, nullable = false)
     private String name;
-    @Column(length = 14, nullable = false)
-    private String cpf;
-    @Column(length = 50, nullable = false)
-    private String email;
-    @OneToMany(mappedBy="client", cascade = CascadeType.ALL)
-    private List<RequestEntity> requests = new ArrayList<>();
+    @Column(length = 255, nullable = false)
+    private String description;
+    @Column(length = 255, nullable = false)
+    private String image;
+    @Column(length = 14, scale = 2)
+    private BigDecimal unitPrice;
+    @OneToOne
+    @JoinColumn(name = "fk_category_id")
+    private CategoryEntity category;
 
 }

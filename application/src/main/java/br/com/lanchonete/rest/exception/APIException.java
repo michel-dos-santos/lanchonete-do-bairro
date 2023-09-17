@@ -2,43 +2,50 @@ package br.com.lanchonete.rest.exception;
 
 import org.springframework.http.HttpStatus;
 
+import java.util.List;
+import java.util.Map;
+
 public class APIException extends Exception {
 
-    private final String code;
-    private final String reason;
+    private final String status;
     private final Integer statusCode;
+    private final String description;
+    private final List<?> errors;
 
-    public APIException(String code, String reason, String message, Integer statusCode) {
-        super(message);
-        this.code = code;
-        this.reason = reason;
+    public APIException(String status, Integer statusCode, String description, List<?> errors) {
+        super(description);
+        this.status = status;
         this.statusCode = statusCode;
+        this.description = description;
+        this.errors = errors;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public String getReason() {
-        return reason;
+    public String getStatus() {
+        return status;
     }
 
     public Integer getStatusCode() {
         return statusCode;
     }
 
-    public static APIException badRequest(String reason, String message) {
-        return new APIException(HttpStatus.BAD_REQUEST.getReasonPhrase(), reason, message,
-                HttpStatus.BAD_REQUEST.value());
+    public String getDescription() {
+        return description;
     }
 
-    public static APIException notFound(String reason, String message) {
-        return new APIException(HttpStatus.NOT_FOUND.getReasonPhrase(), reason, message, HttpStatus.NOT_FOUND.value());
+    public List<?> getErrors() {
+        return errors;
     }
 
-    public static APIException internalError(String reason, String message) {
-        return new APIException(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), reason, message,
-                HttpStatus.INTERNAL_SERVER_ERROR.value());
+    public static APIException badRequest(String description, List<?> errors) {
+        return new APIException(HttpStatus.BAD_REQUEST.name(), HttpStatus.BAD_REQUEST.value(), description, errors);
+    }
+
+    public static APIException notFound(String description, List<?> errors) {
+        return new APIException(HttpStatus.NOT_FOUND.name(), HttpStatus.NOT_FOUND.value(), description, errors);
+    }
+
+    public static APIException internalError(String description, List<?> errors) {
+        return new APIException(HttpStatus.INTERNAL_SERVER_ERROR.name(), HttpStatus.INTERNAL_SERVER_ERROR.value(), description, errors);
     }
 
 }
