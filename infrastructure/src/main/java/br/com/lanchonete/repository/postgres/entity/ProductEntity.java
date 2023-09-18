@@ -33,7 +33,7 @@ public class ProductEntity {
     private String name;
     @Column(length = 255, nullable = false)
     private String description;
-    @Column(length = 255, nullable = false)
+    @Column(length = 1024, nullable = false)
     private String image;
     @Column(length = 14, scale = 2)
     private BigDecimal unitPrice;

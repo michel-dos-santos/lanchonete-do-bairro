@@ -1,4 +1,4 @@
-package br.com.lanchonete.output;
+package br.com.lanchonete.rest.output;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
