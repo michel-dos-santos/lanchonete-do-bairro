@@ -1,30 +1,34 @@
 package br.com.lanchonete.usecase.product;
 
 import br.com.lanchonete.exception.CategoryNotFoundException;
+import br.com.lanchonete.exception.ProductFoundException;
 import br.com.lanchonete.exception.ProductInvalidException;
 import br.com.lanchonete.exception.ProductNotInformedException;
 import br.com.lanchonete.model.LogCode;
 import br.com.lanchonete.model.Product;
 import br.com.lanchonete.port.repository.CategoryRepository;
 import br.com.lanchonete.port.repository.LogRepository;
-import br.com.lanchonete.port.usecase.product.ValidateProduct;
+import br.com.lanchonete.port.repository.ProductRepository;
+import br.com.lanchonete.port.usecase.product.ValidateSaveProduct;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class ValidateProductUsecase implements ValidateProduct {
+public class ValidateSaveProductUsecase implements ValidateSaveProduct {
 
     private final LogRepository logRepository;
     private final CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
 
-    public ValidateProductUsecase(LogRepository logRepository, CategoryRepository categoryRepository) {
+    public ValidateSaveProductUsecase(LogRepository logRepository, CategoryRepository categoryRepository, ProductRepository productRepository) {
         this.logRepository = logRepository;
         this.categoryRepository = categoryRepository;
+        this.productRepository = productRepository;
     }
 
     @Override
     public void validate(Product product) {
-        logRepository.info(ValidateProductUsecase.class, LogCode.LogCodeInfo._0008);
+        logRepository.info(ValidateSaveProductUsecase.class, LogCode.LogCodeInfo._0008);
 
         if (Objects.isNull(product)) {
             throw new ProductNotInformedException();
@@ -49,6 +53,9 @@ public class ValidateProductUsecase implements ValidateProduct {
         }
         if (!categoryRepository.existsByName(product.getCategory().getName())) {
             throw new CategoryNotFoundException("category.name", product.getCategory().getName());
+        }
+        if (productRepository.existsByNameAndCategoryName(product.getName(), product.getCategory().getName())) {
+            throw new ProductFoundException("name", "category", product.getName(), product.getCategory().getName());
         }
     }
 }

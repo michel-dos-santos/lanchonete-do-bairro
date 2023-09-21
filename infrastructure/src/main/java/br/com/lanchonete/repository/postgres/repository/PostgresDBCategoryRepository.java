@@ -32,8 +32,7 @@ public class PostgresDBCategoryRepository implements CategoryRepository {
         }
 
         CategoryEntity categoryEntity = modelMapper.map(category, CategoryEntity.class);
-        categoryRepository.save(categoryEntity);
-        return category;
+        return modelMapper.map(categoryRepository.save(categoryEntity), Category.class);
     }
 
     @Override

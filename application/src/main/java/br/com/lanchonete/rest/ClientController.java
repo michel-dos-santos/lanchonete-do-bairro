@@ -46,10 +46,10 @@ public class ClientController {
     @Counted(value = "execution.count.saveClient")
     @Timed(value = "execution.time.saveClient", longTask = true)
     @PostMapping
-    public void saveClient(@RequestBody @Valid ClientInputDTO clientInputDTO) throws APIException {
+    public ClientOutputDTO saveClient(@RequestBody @Valid ClientInputDTO clientInputDTO) throws APIException {
         try {
             Client client = modelMapper.map(clientInputDTO, Client.class);
-            saveClientUsecase.save(client);
+            return modelMapper.map(saveClientUsecase.save(client), ClientOutputDTO.class);
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }

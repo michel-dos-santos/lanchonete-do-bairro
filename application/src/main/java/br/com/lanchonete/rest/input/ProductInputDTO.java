@@ -8,10 +8,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 public class ProductInputDTO {
+
+    private transient UUID id;
 
     @NotBlank(message = "Nome do produto não pode ser vazio ou nulo")
     @Size(min = 3, max = 50, message = "Nome do produto deve ter no mínimo {min} e no máximo {max} caracteres")

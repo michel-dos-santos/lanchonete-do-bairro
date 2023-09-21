@@ -5,15 +5,15 @@ import br.com.lanchonete.model.Product;
 import br.com.lanchonete.port.repository.LogRepository;
 import br.com.lanchonete.port.repository.ProductRepository;
 import br.com.lanchonete.port.usecase.product.SaveProduct;
-import br.com.lanchonete.port.usecase.product.ValidateProduct;
+import br.com.lanchonete.port.usecase.product.ValidateSaveProduct;
 
 public class SaveProductUsecase implements SaveProduct {
 
     private final LogRepository logRepository;
     private final ProductRepository productRepository;
-    private final ValidateProduct validateProduct;
+    private final ValidateSaveProduct validateProduct;
 
-    public SaveProductUsecase(ProductRepository productRepository, LogRepository logRepository, ValidateProduct validateProduct) {
+    public SaveProductUsecase(ProductRepository productRepository, LogRepository logRepository, ValidateSaveProduct validateProduct) {
         this.logRepository = logRepository;
         this.productRepository = productRepository;
         this.validateProduct = validateProduct;

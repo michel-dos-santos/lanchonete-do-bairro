@@ -1,10 +1,9 @@
 package br.com.lanchonete.port.usecase.product;
 
-import br.com.lanchonete.model.Category;
-import br.com.lanchonete.model.Product;
+import java.util.UUID;
 
 public interface DeleteProduct {
 
-    Product deleteByCategoryAndName(Category category, String name);
+    void deleteById(UUID id);
 
 }

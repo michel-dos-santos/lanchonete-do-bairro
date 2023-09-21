@@ -1,13 +1,23 @@
 package br.com.lanchonete.model;
 
 import java.util.List;
+import java.util.UUID;
 
 public class Client {
 
+    private UUID id;
     private String name;
     private String cpf;
     private String email;
     private List<Request> requests;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

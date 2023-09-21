@@ -48,10 +48,10 @@ public class CategoryController {
     @Counted(value = "execution.count.saveCategory")
     @Timed(value = "execution.time.saveCategory", longTask = true)
     @PostMapping
-    public void saveCategory(@RequestBody @Valid CategoryInputDTO categoryInputDTO) throws APIException {
+    public CategoryOutputDTO saveCategory(@RequestBody @Valid CategoryInputDTO categoryInputDTO) throws APIException {
         try {
             Category category = modelMapper.map(categoryInputDTO, Category.class);
-            saveCategoryUsecase.save(category);
+            return modelMapper.map(saveCategoryUsecase.save(category), CategoryOutputDTO.class);
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }

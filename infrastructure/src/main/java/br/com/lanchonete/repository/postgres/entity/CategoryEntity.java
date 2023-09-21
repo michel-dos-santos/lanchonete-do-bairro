@@ -20,7 +20,7 @@ import java.util.UUID;
 public class CategoryEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "uuid")
     private UUID id;
     @CreatedDate

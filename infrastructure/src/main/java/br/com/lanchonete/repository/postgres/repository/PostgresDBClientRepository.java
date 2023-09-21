@@ -31,7 +31,7 @@ public class PostgresDBClientRepository implements ClientRepository {
 
         ClientEntity clientEntity = modelMapper.map(client, ClientEntity.class);
         clientRepository.save(clientEntity);
-        return client;
+        return modelMapper.map(clientEntity, Client.class);
     }
 
     @Override

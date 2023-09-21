@@ -2,9 +2,11 @@ package br.com.lanchonete.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.UUID;
 
 public class Product {
 
+    private UUID id;
     private Date createdAt;
     private Date updatedAt;
     private String name;
@@ -12,6 +14,15 @@ public class Product {
     private String image;
     private BigDecimal unitPrice;
     private Category category;
+    private StatusActiveType status = StatusActiveType.ACTIVE;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public Date getCreatedAt() {
         return createdAt;
@@ -68,4 +79,13 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    public StatusActiveType getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusActiveType status) {
+        this.status = status;
+    }
+
 }
