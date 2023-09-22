@@ -1,12 +1,12 @@
 package br.com.lanchonete.rest;
 
-import br.com.lanchonete.input.ClientInputDTO;
 import br.com.lanchonete.model.Client;
-import br.com.lanchonete.output.ClientOutputDTO;
 import br.com.lanchonete.port.repository.LogRepository;
 import br.com.lanchonete.rest.exception.APIException;
-import br.com.lanchonete.usecase.IdentifierClientUsecase;
-import br.com.lanchonete.usecase.SaveClientUsecase;
+import br.com.lanchonete.rest.input.ClientInputDTO;
+import br.com.lanchonete.rest.output.ClientOutputDTO;
+import br.com.lanchonete.usecase.client.IdentifierClientUsecase;
+import br.com.lanchonete.usecase.client.SaveClientUsecase;
 import io.micrometer.core.annotation.Counted;
 import io.micrometer.core.annotation.Timed;
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,15 +21,17 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.Collections;
+
+import static br.com.lanchonete.rest.ClientController.BASE_PATH;
 
 @Tag(name = "Endpoint Clients")
 @Validated
 @RestController
-@RequestMapping(path = "/v1/clients", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = BASE_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
 public class ClientController {
 
+    public static final String BASE_PATH = "/v1/clients";
     @Autowired
     private ModelMapper modelMapper;
     @Autowired
@@ -44,10 +46,10 @@ public class ClientController {
     @Counted(value = "execution.count.saveClient")
     @Timed(value = "execution.time.saveClient", longTask = true)
     @PostMapping
-    public void saveClient(@RequestBody @Valid ClientInputDTO clientInputDTO) throws APIException {
+    public ClientOutputDTO saveClient(@RequestBody @Valid ClientInputDTO clientInputDTO) throws APIException {
         try {
             Client client = modelMapper.map(clientInputDTO, Client.class);
-            saveClientUsecase.save(client);
+            return modelMapper.map(saveClientUsecase.save(client), ClientOutputDTO.class);
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }

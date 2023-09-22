@@ -1,5 +1,6 @@
 package br.com.lanchonete.repository.postgres.entity;
 
+import br.com.lanchonete.model.StatusActiveType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,7 +22,7 @@ import java.util.UUID;
 public class ProductEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "uuid")
     private UUID id;
     @CreatedDate
@@ -33,12 +34,14 @@ public class ProductEntity {
     private String name;
     @Column(length = 255, nullable = false)
     private String description;
-    @Column(length = 255, nullable = false)
+    @Column(length = 1024, nullable = false)
     private String image;
     @Column(length = 14, scale = 2)
     private BigDecimal unitPrice;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_category_id")
     private CategoryEntity category;
+    @Enumerated(EnumType.STRING)
+    private StatusActiveType status;
 
 }

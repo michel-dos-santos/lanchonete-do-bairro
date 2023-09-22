@@ -4,6 +4,6 @@ import br.com.lanchonete.model.Product;
 
 public interface UpdateProduct {
 
-    Product save(Product product);
+    Product update(Product product);
 
 }

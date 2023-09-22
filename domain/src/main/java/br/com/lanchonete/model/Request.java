@@ -2,15 +2,25 @@ package br.com.lanchonete.model;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public class Request {
 
+    private UUID id;
     private Date createdAt;
     private Date updatedAt;
     private String number;
     private StatusType status;
     private Billing billing;
     private List<RequestItem> requestItems;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public Date getCreatedAt() {
         return createdAt;

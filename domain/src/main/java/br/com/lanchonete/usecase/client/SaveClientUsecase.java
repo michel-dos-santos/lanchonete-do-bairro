@@ -1,4 +1,4 @@
-package br.com.lanchonete.usecase;
+package br.com.lanchonete.usecase.client;
 
 import br.com.lanchonete.model.Client;
 import br.com.lanchonete.model.LogCode;

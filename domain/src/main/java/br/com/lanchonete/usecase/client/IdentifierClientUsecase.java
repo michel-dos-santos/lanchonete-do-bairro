@@ -1,15 +1,10 @@
-package br.com.lanchonete.usecase;
+package br.com.lanchonete.usecase.client;
 
-import br.com.lanchonete.exception.ClientNotFoundException;
 import br.com.lanchonete.model.Client;
 import br.com.lanchonete.model.LogCode;
 import br.com.lanchonete.port.repository.ClientRepository;
 import br.com.lanchonete.port.repository.LogRepository;
 import br.com.lanchonete.port.usecase.client.IdentifierClient;
-import br.com.lanchonete.port.usecase.client.SaveClient;
-import br.com.lanchonete.port.usecase.client.ValidateClient;
-
-import java.util.Objects;
 
 public class IdentifierClientUsecase implements IdentifierClient {
 

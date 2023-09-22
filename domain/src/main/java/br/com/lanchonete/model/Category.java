@@ -1,13 +1,23 @@
 package br.com.lanchonete.model;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class Category {
 
+    private UUID id;
     private Date createdAt;
     private Date updatedAt;
     private String name;
     private String description;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public Date getCreatedAt() {
         return createdAt;
