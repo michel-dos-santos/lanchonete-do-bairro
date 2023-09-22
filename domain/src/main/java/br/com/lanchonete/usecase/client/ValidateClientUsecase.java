@@ -1,10 +1,9 @@
-package br.com.lanchonete.usecase;
+package br.com.lanchonete.usecase.client;
 
 import br.com.lanchonete.exception.ClientInvalidException;
 import br.com.lanchonete.exception.ClientNotInformedException;
 import br.com.lanchonete.model.Client;
 import br.com.lanchonete.model.LogCode;
-import br.com.lanchonete.port.repository.ClientRepository;
 import br.com.lanchonete.port.repository.LogRepository;
 import br.com.lanchonete.port.usecase.client.ValidateClient;
 import br.com.lanchonete.utils.validators.CpfValidator;

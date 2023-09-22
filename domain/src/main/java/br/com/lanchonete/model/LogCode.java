@@ -13,7 +13,23 @@ public abstract class LogCode {
         _0002("Validando a consistência dos dados do cliente"),
         _0003("Cliente criado com sucesso"),
         _0004("Identificando o cliente com base no CPF"),
-        _0005("Cliente identificado com sucesso");
+        _0005("Cliente identificado com sucesso"),
+        _0006("Iniciando o processo de criação do produto no sistema"),
+        _0007("Produto criado com sucesso"),
+        _0008("Validando a consistência dos dados do produto"),
+        _0009("Iniciando o processo de criação da categoria no sistema"),
+        _0010("Categoria criada com sucesso"),
+        _0011("Validando a consistência dos dados da categoria"),
+        _0012("Iniciando o processo de listagem das categorias"),
+        _0013("Listagem das categorias executada com sucesso"),
+        _0014("Iniciando o processo de atualização do produto no sistema"),
+        _0015("Produto atualizado com sucesso"),
+        _0016("Iniciando o processo de exclusão do produto no sistema"),
+        _0017("Produto excluido com sucesso"),
+        _0018("Iniciando o processo de atualização de campos do produto no sistema"),
+        _0019("Iniciando o processo de busca dos produtos pela categoria no sistema"),
+        _0020("Produtos encontrados criada com sucesso"),
+        ;
 
         private String description;
 

@@ -9,7 +9,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Objects;
 import java.util.Optional;
 
 @Component
@@ -32,7 +31,7 @@ public class PostgresDBClientRepository implements ClientRepository {
 
         ClientEntity clientEntity = modelMapper.map(client, ClientEntity.class);
         clientRepository.save(clientEntity);
-        return client;
+        return modelMapper.map(clientEntity, Client.class);
     }
 
     @Override

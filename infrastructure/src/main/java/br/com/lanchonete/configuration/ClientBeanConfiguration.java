@@ -3,9 +3,9 @@ package br.com.lanchonete.configuration;
 import br.com.lanchonete.port.repository.ClientRepository;
 import br.com.lanchonete.port.repository.LogRepository;
 import br.com.lanchonete.port.usecase.client.ValidateClient;
-import br.com.lanchonete.usecase.IdentifierClientUsecase;
-import br.com.lanchonete.usecase.SaveClientUsecase;
-import br.com.lanchonete.usecase.ValidateClientUsecase;
+import br.com.lanchonete.usecase.client.IdentifierClientUsecase;
+import br.com.lanchonete.usecase.client.SaveClientUsecase;
+import br.com.lanchonete.usecase.client.ValidateClientUsecase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
