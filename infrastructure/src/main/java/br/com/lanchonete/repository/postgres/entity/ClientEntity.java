@@ -36,7 +36,7 @@ public class ClientEntity {
     private String cpf;
     @Column(length = 50, nullable = false)
     private String email;
-    @OneToMany(mappedBy="client", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderEntity> orders = new ArrayList<>();
 
 }

@@ -32,10 +32,10 @@ public class OrderItemEntity {
     private String observation;
     @Column(length = 4, nullable = false)
     private Integer quantity;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_product_id")
     private ProductEntity product;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="fk_order_id")
     private OrderEntity order;
 

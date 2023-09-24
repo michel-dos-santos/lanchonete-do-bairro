@@ -33,13 +33,13 @@ public class OrderEntity {
     private Integer number;
     @Enumerated(EnumType.STRING)
     private StatusType status;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_billing_id")
     private BillingEntity billing;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="fk_client_id")
     private ClientEntity client;
-    @OneToMany(mappedBy="order", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy="order", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<OrderItemEntity> orderItems;
 
 }

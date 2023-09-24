@@ -1,12 +1,17 @@
 package br.com.lanchonete.repository.postgres.repository;
 
 import br.com.lanchonete.model.Order;
+import br.com.lanchonete.model.StatusType;
 import br.com.lanchonete.port.repository.OrderRepository;
 import br.com.lanchonete.repository.postgres.entity.OrderEntity;
 import br.com.lanchonete.repository.postgres.entity.SequenceNumber;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 @Component
 public class PostgresDBOrderRepository implements OrderRepository {
@@ -29,5 +34,12 @@ public class PostgresDBOrderRepository implements OrderRepository {
         orderEntity.setNumber(sequenceNumber.getNumber());
         orderEntity.getOrderItems().forEach(orderItemEntity -> orderItemEntity.setOrder(orderEntity));
         return modelMapper.map(orderRepository.save(orderEntity), Order.class);
+    }
+
+    @Override
+    public List<Order> findAllOrdersByStatus(StatusType statusType) {
+        List<OrderEntity> orderEntityList = orderRepository.findAllByStatus(br.com.lanchonete.repository.postgres.entity.StatusType.get(statusType.toString()));
+        Type type = new TypeToken<List<Order>>() {}.getType();
+        return modelMapper.map(orderEntityList, type);
     }
 }
