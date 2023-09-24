@@ -1,7 +1,7 @@
 package br.com.lanchonete.repository.postgres.repository;
 
-import br.com.lanchonete.exception.ClientFoundException;
-import br.com.lanchonete.exception.ClientNotFoundException;
+import br.com.lanchonete.exception.client.ClientFoundException;
+import br.com.lanchonete.exception.client.ClientNotFoundException;
 import br.com.lanchonete.model.Client;
 import br.com.lanchonete.port.repository.ClientRepository;
 import br.com.lanchonete.repository.postgres.entity.ClientEntity;

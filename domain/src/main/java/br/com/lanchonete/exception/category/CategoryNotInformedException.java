@@ -1,4 +1,4 @@
-package br.com.lanchonete.exception;
+package br.com.lanchonete.exception.category;
 
 public class CategoryNotInformedException extends RuntimeException {
 

@@ -1,4 +1,4 @@
-package br.com.lanchonete.exception;
+package br.com.lanchonete.exception.product;
 
 public class ProductActivedException extends RuntimeException {
 

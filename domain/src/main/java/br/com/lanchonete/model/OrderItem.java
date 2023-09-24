@@ -2,11 +2,12 @@ package br.com.lanchonete.model;
 
 import java.util.UUID;
 
-public class RequestItem {
+public class OrderItem {
 
     private UUID id;
     private String observation;
     private Product product;
+    private Integer quantity;
 
     public UUID getId() {
         return id;
@@ -30,5 +31,13 @@ public class RequestItem {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }

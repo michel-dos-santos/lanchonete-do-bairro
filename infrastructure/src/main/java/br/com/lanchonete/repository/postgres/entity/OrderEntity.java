@@ -9,15 +9,16 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "request_item")
+@Table(name = "tb_order")
 @EntityListeners(AuditingEntityListener.class)
-public class RequestItemEntity {
+public class OrderEntity {
 
     @Id
     @GeneratedValue
@@ -28,14 +29,17 @@ public class RequestItemEntity {
     private Date createdAt;
     @LastModifiedDate
     private Date updatedAt;
-    @Column(length = 255, nullable = false)
-    private String observation;
+    @Column(length = 10)
+    private Integer number;
+    @Enumerated(EnumType.STRING)
+    private StatusType status;
     @OneToOne
-    @JoinColumn(name = "fk_product_id")
-    private ProductEntity product;
+    @JoinColumn(name = "fk_billing_id")
+    private BillingEntity billing;
     @ManyToOne
-    @JoinColumn(name="fk_request_id")
-    private RequestEntity request;
-
+    @JoinColumn(name="fk_client_id")
+    private ClientEntity client;
+    @OneToMany(mappedBy="order", cascade = CascadeType.PERSIST)
+    private List<OrderItemEntity> orderItems;
 
 }

@@ -29,6 +29,11 @@ public abstract class LogCode {
         _0018("Iniciando o processo de atualização de campos do produto no sistema"),
         _0019("Iniciando o processo de busca dos produtos pela categoria no sistema"),
         _0020("Produtos encontrados criada com sucesso"),
+        _0021("Validando a consistência dos dados do pedido"),
+        _0022("Iniciando o processo de checkout do pedido no sistema"),
+        _0023("Pedido criado com sucesso"),
+        _0024("Iniciando o processo de fazer a cobrança do pedido no sistema"),
+        _0025("Cobrança do pedido criado com sucesso"),
         ;
 
         private String description;
