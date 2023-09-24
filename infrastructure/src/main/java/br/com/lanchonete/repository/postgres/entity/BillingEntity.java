@@ -33,7 +33,7 @@ public class BillingEntity {
     private BigDecimal totalPrice;
     @Enumerated(EnumType.STRING)
     private StatusPaymentType status;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_billing_form_id")
     private BillingFormEntity billingForm;
 

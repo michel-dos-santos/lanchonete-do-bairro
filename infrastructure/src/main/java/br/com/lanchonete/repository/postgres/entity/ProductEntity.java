@@ -38,7 +38,7 @@ public class ProductEntity {
     private String image;
     @Column(length = 14, scale = 2)
     private BigDecimal unitPrice;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_category_id")
     private CategoryEntity category;
     @Enumerated(EnumType.STRING)

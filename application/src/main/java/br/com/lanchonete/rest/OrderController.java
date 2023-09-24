@@ -6,6 +6,7 @@ import br.com.lanchonete.rest.exception.APIException;
 import br.com.lanchonete.rest.input.OrderInputDTO;
 import br.com.lanchonete.rest.output.OrderOutputDTO;
 import br.com.lanchonete.usecase.order.CheckoutOrderUsecase;
+import br.com.lanchonete.usecase.order.FindAllOrdersByStatusUsecase;
 import io.micrometer.core.annotation.Counted;
 import io.micrometer.core.annotation.Timed;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,15 +15,15 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import static br.com.lanchonete.rest.OrderController.BASE_PATH;
 
@@ -38,6 +39,8 @@ public class OrderController {
     private LogRepository logRepository;
     @Autowired
     private CheckoutOrderUsecase checkoutOrderUsecase;
+    @Autowired
+    private FindAllOrdersByStatusUsecase findAllOrdersByStatusUsecase;
 
     @ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Indica que o checkout do pedido foi executada com sucesso") })
     @Operation(summary = "Persiste os dados do pedido")
@@ -65,6 +68,21 @@ public class OrderController {
             });
 
             return modelMapper.map(checkoutOrderUsecase.checkout(order), OrderOutputDTO.class);
+        } catch (Exception e) {
+            throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
+        }
+    }
+
+    @ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Indica que o busca dos pedidos foi executada com sucesso") })
+    @Operation(summary = "Lista os dados dos pedidos")
+    @Counted(value = "execution.count.findAllOrdersByStatus")
+    @Timed(value = "execution.time.findAllOrdersByStatus", longTask = true)
+    @GetMapping(value = "/status-type/{statusType}")
+    public List<OrderOutputDTO> findAllOrdersByStatus(@PathVariable StatusType statusType) throws APIException {
+        try {
+            List<Order> orders = findAllOrdersByStatusUsecase.findAll(statusType);
+            Type type = new TypeToken<List<OrderOutputDTO>>() {}.getType();
+            return modelMapper.map(orders, type);
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }

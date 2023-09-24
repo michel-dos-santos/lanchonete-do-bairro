@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class BillingBeanConfiguration {
 
     @Bean
-    GenerateBillingUsecase makeBilling(LogRepository logRepository, BillingRepository billingRepository) {
+    GenerateBillingUsecase generateBilling(LogRepository logRepository, BillingRepository billingRepository) {
         return new GenerateBillingUsecase(logRepository, billingRepository);
     }
 
