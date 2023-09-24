@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public enum StatusType {
     RECEIVED,
-
+    IN_BILLING,
     IN_PREPARATION,
     READY,
     FINISHED;

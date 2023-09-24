@@ -1,6 +1,6 @@
 package br.com.lanchonete.usecase.product;
 
-import br.com.lanchonete.exception.ProductActivedException;
+import br.com.lanchonete.exception.product.ProductActivedException;
 import br.com.lanchonete.model.LogCode;
 import br.com.lanchonete.model.Product;
 import br.com.lanchonete.model.StatusActiveType;

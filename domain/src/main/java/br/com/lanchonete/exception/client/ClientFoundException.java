@@ -1,4 +1,4 @@
-package br.com.lanchonete.exception;
+package br.com.lanchonete.exception.client;
 
 public class ClientFoundException extends RuntimeException {
 

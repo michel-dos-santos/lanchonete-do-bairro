@@ -4,15 +4,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-public class Request {
+public class Order {
 
     private UUID id;
     private Date createdAt;
     private Date updatedAt;
-    private String number;
+    private Integer number;
     private StatusType status;
+    private Client client;
     private Billing billing;
-    private List<RequestItem> requestItems;
+    private List<OrderItem> orderItems;
 
     public UUID getId() {
         return id;
@@ -38,11 +39,11 @@ public class Request {
         this.updatedAt = updatedAt;
     }
 
-    public String getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 
@@ -54,6 +55,14 @@ public class Request {
         this.status = status;
     }
 
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
     public Billing getBilling() {
         return billing;
     }
@@ -62,11 +71,11 @@ public class Request {
         this.billing = billing;
     }
 
-    public List<RequestItem> getRequestItems() {
-        return requestItems;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setRequestItems(List<RequestItem> requestItems) {
-        this.requestItems = requestItems;
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }

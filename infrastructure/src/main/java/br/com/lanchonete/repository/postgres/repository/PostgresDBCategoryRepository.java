@@ -1,6 +1,6 @@
 package br.com.lanchonete.repository.postgres.repository;
 
-import br.com.lanchonete.exception.CategoryFoundException;
+import br.com.lanchonete.exception.category.CategoryFoundException;
 import br.com.lanchonete.model.Category;
 import br.com.lanchonete.port.repository.CategoryRepository;
 import br.com.lanchonete.repository.postgres.entity.CategoryEntity;

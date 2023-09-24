@@ -17,7 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "client")
+@Table(name = "tb_client")
 @EntityListeners(AuditingEntityListener.class)
 public class ClientEntity {
 
@@ -37,6 +37,6 @@ public class ClientEntity {
     @Column(length = 50, nullable = false)
     private String email;
     @OneToMany(mappedBy="client", cascade = CascadeType.ALL)
-    private List<RequestEntity> requests = new ArrayList<>();
+    private List<OrderEntity> orders = new ArrayList<>();
 
 }
