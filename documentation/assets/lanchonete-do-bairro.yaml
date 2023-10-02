@@ -1,0 +1,412 @@
+openapi: 3.0.1
+info:
+  title: Lanchonete do Bairro
+  description: Projeto criado com intuido de garantir que a lanchonete possa atender os clientes de maneira eficiente, gerenciando seus pedidos e estoques de forma adequada...
+  version: 1.0.0
+servers:
+  - url: http://localhost:8081/api
+    description: Generated server url
+paths:
+  /v1/products/{id}:
+    put:
+      tags:
+        - Endpoint Products
+      summary: Persiste os dados do produto
+      operationId: updateProduct
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInputDTO'
+        required: true
+      responses:
+        '200':
+          description: Indica que a atualização do produto foi executada com sucesso
+    delete:
+      tags:
+        - Endpoint Products
+      summary: Exclui os dados do produto
+      operationId: deleteProduct
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Indica que a exclusão do produto foi executada com sucesso
+    patch:
+      tags:
+        - Endpoint Products
+      summary: Persiste os dados do produto
+      operationId: patchProduct
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductPatchInputDTO'
+        required: true
+      responses:
+        '200':
+          description: Indica que a atualização do produto foi executada com sucesso
+  /v1/products:
+    post:
+      tags:
+        - Endpoint Products
+      summary: Persiste os dados do produto e associa a categoria
+      operationId: saveProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInputDTO'
+        required: true
+      responses:
+        '200':
+          description: Indica que a criação do produto foi executada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductOutputDTO'
+  /v1/orders:
+    post:
+      tags:
+        - Endpoint Orders
+      summary: Persiste os dados do pedido
+      operationId: checkoutOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderInputDTO'
+        required: true
+      responses:
+        '200':
+          description: Indica que o checkout do pedido foi executada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderOutputDTO'
+  /v1/clients:
+    post:
+      tags:
+        - Endpoint Clients
+      summary: Persiste os dados do cliente
+      operationId: saveClient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientInputDTO'
+        required: true
+      responses:
+        '200':
+          description: Indica que a criação do cliente foi executada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientOutputDTO'
+  /v1/clients/{cpf}:
+    post:
+      tags:
+        - Endpoint Clients
+      summary: Identifica o cliente
+      operationId: identifierClient
+      parameters:
+        - name: cpf
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Indica que o cliente foi identificado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientOutputDTO'
+  /v1/categories:
+    get:
+      tags:
+        - Endpoint Categories
+      summary: Lista todas as categorias
+      operationId: findAllCategories
+      responses:
+        '200':
+          description: Indica que a busca das categorias foi executada com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CategoryOutputDTO'
+    post:
+      tags:
+        - Endpoint Categories
+      summary: Persiste os dados do categoria
+      operationId: saveCategory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryInputDTO'
+        required: true
+      responses:
+        '200':
+          description: Indica que a criação da categoria foi executada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryOutputDTO'
+  /v1/products/category-id/{categoryID}:
+    get:
+      tags:
+        - Endpoint Products
+      summary: Lista os produtos com base na categoria
+      operationId: getProductsByCategoryID
+      parameters:
+        - name: categoryID
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Indica que a busca do produto pelo identificador da categoria foi executada com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductOutputDTO'
+  /v1/orders/status-type/{statusType}:
+    get:
+      tags:
+        - Endpoint Orders
+      summary: Lista os dados dos pedidos
+      operationId: findAllOrdersByStatus
+      parameters:
+        - name: statusType
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - RECEIVED
+              - IN_BILLING
+              - IN_PREPARATION
+              - READY
+              - FINISHED
+      responses:
+        '200':
+          description: Indica que o busca dos pedidos foi executada com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderOutputDTO'
+components:
+  schemas:
+    ProductInputDTO:
+      required:
+        - categoryName
+        - description
+        - image
+        - name
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 3
+          type: string
+        description:
+          maxLength: 255
+          minLength: 3
+          type: string
+        image:
+          maxLength: 1024
+          minLength: 0
+          type: string
+        unitPrice:
+          minimum: 0
+          exclusiveMinimum: true
+          type: number
+        categoryName:
+          type: string
+        id:
+          type: string
+          format: uuid
+    CategoryOutputDTO:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+    ProductOutputDTO:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+        unitPrice:
+          type: number
+        category:
+          $ref: '#/components/schemas/CategoryOutputDTO'
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - INACTIVE
+    BillingInputDTO:
+      required:
+        - billingFormType
+        - totalPrice
+      type: object
+      properties:
+        totalPrice:
+          minimum: 0
+          exclusiveMinimum: true
+          type: number
+        billingFormType:
+          type: string
+          enum:
+            - QRCODE_MERCADO_PAGO
+    OrderInputDTO:
+      required:
+        - billing
+        - clientID
+        - orderItems
+      type: object
+      properties:
+        clientID:
+          type: string
+          format: uuid
+        billing:
+          $ref: '#/components/schemas/BillingInputDTO'
+        orderItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItemInputDTO'
+    OrderItemInputDTO:
+      required:
+        - productID
+        - quantity
+      type: object
+      properties:
+        observation:
+          maxLength: 255
+          minLength: 0
+          type: string
+        productID:
+          type: string
+          format: uuid
+        quantity:
+          maximum: 9999
+          type: integer
+          format: int32
+    OrderOutputDTO:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        number:
+          type: string
+        status:
+          type: string
+          enum:
+            - RECEIVED
+            - IN_BILLING
+            - IN_PREPARATION
+            - READY
+            - FINISHED
+    ClientInputDTO:
+      required:
+        - cpf
+        - email
+        - name
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 3
+          type: string
+        cpf:
+          type: string
+        email:
+          type: string
+    ClientOutputDTO:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        cpf:
+          type: string
+        email:
+          type: string
+    CategoryInputDTO:
+      required:
+        - description
+        - name
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 3
+          type: string
+        description:
+          maxLength: 255
+          minLength: 3
+          type: string
+    ProductPatchInputDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+        unitPrice:
+          type: number
+        categoryName:
+          type: string
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - INACTIVE
+        id:
+          type: string
+          format: uuid
