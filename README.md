@@ -17,6 +17,11 @@
 <p align="center"> Projeto criado com intuido de garantir que a lanchonete possa atender os clientes de maneira eficiente, gerenciando seus pedidos e estoques de forma adequada...
 </p>
 
+## Grupo 3SOAT - G38
+- RM352301 - Andre Felipe Godoi Moura  
+- RM351036 - Bruna Toledo Pereira  
+- RM351991 - Michel dos Santos Silva
+
 ## Tabela de conteúdo
 - [Desafio](documentation/TECH-CHALLENGE.md)
 - [Arquitetura](documentation/ARCHITECTURE.md)
