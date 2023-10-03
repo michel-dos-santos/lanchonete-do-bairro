@@ -9,7 +9,7 @@ public class Client {
     private String name;
     private String cpf;
     private String email;
-    private List<Request> requests;
+    private List<Order> orders;
 
     public UUID getId() {
         return id;
@@ -43,11 +43,11 @@ public class Client {
         this.email = email;
     }
 
-    public List<Request> getRequests() {
-        return requests;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setRequests(List<Request> requests) {
-        this.requests = requests;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

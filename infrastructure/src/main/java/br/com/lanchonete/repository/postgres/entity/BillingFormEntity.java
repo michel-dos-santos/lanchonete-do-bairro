@@ -15,7 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "billing_form")
+@Table(name = "tb_billing_form")
 @EntityListeners(AuditingEntityListener.class)
 public class BillingFormEntity {
 
@@ -28,8 +28,6 @@ public class BillingFormEntity {
     private Date createdAt;
     @LastModifiedDate
     private Date updatedAt;
-    @Column(length = 50, nullable = false)
-    private String identification;
     @Enumerated(EnumType.STRING)
     private BillingFormType billingFormType;
 

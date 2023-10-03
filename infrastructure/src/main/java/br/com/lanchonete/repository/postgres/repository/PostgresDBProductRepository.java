@@ -1,6 +1,6 @@
 package br.com.lanchonete.repository.postgres.repository;
 
-import br.com.lanchonete.exception.ProductNotFoundException;
+import br.com.lanchonete.exception.product.ProductNotFoundException;
 import br.com.lanchonete.model.Product;
 import br.com.lanchonete.port.repository.ProductRepository;
 import br.com.lanchonete.repository.postgres.entity.CategoryEntity;

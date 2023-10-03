@@ -16,7 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "billing")
+@Table(name = "tb_billing")
 @EntityListeners(AuditingEntityListener.class)
 public class BillingEntity {
 
@@ -33,7 +33,7 @@ public class BillingEntity {
     private BigDecimal totalPrice;
     @Enumerated(EnumType.STRING)
     private StatusPaymentType status;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_billing_form_id")
     private BillingFormEntity billingForm;
 
