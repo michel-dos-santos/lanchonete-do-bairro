@@ -36,7 +36,7 @@ _Existe duas forma de acessar a documentação das APIs e obter todos os detalhe
 - Iniciar o prometheus na porta 9090
 - Iniciar o grafana na porta 3000
 
-2 - Rodar o comando ```sudo docker compose ps``` para verificar se o "State" está UP ou simplesmente chamar o health check que foi disponibilizado na [colection do postman](Teste%20Itaú%20-%20The%20Cat%20API.postman_collection.json)
+2 - Rodar o comando ```sudo docker compose ps``` para verificar se o "State" está UP ou simplesmente chamar o health check que foi disponibilizado na [Collection Insomnia](assets%2FCollection_Insomnia.json)
 
 3 - Executar as APIs
 
