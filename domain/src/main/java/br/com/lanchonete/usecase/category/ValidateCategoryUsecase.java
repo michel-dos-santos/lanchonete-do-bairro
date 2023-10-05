@@ -1,7 +1,7 @@
 package br.com.lanchonete.usecase.category;
 
-import br.com.lanchonete.exception.CategoryInvalidException;
-import br.com.lanchonete.exception.CategoryNotInformedException;
+import br.com.lanchonete.exception.category.CategoryInvalidException;
+import br.com.lanchonete.exception.category.CategoryNotInformedException;
 import br.com.lanchonete.model.Category;
 import br.com.lanchonete.model.LogCode;
 import br.com.lanchonete.port.repository.LogRepository;

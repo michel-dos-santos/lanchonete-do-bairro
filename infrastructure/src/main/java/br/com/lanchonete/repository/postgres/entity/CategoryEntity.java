@@ -15,7 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "category")
+@Table(name = "tb_category")
 @EntityListeners(AuditingEntityListener.class)
 public class CategoryEntity {
 

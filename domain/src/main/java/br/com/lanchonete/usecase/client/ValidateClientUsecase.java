@@ -1,7 +1,7 @@
 package br.com.lanchonete.usecase.client;
 
-import br.com.lanchonete.exception.ClientInvalidException;
-import br.com.lanchonete.exception.ClientNotInformedException;
+import br.com.lanchonete.exception.client.ClientInvalidException;
+import br.com.lanchonete.exception.client.ClientNotInformedException;
 import br.com.lanchonete.model.Client;
 import br.com.lanchonete.model.LogCode;
 import br.com.lanchonete.port.repository.LogRepository;

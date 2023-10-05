@@ -17,7 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "product")
+@Table(name = "tb_product")
 @EntityListeners(AuditingEntityListener.class)
 public class ProductEntity {
 
@@ -38,7 +38,7 @@ public class ProductEntity {
     private String image;
     @Column(length = 14, scale = 2)
     private BigDecimal unitPrice;
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_category_id")
     private CategoryEntity category;
     @Enumerated(EnumType.STRING)

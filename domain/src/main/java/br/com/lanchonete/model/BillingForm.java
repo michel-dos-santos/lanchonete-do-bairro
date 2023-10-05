@@ -5,7 +5,6 @@ import java.util.UUID;
 public class BillingForm {
 
     private UUID id;
-    private String identification;
     private BillingFormType billingFormType;
 
     public UUID getId() {
@@ -14,14 +13,6 @@ public class BillingForm {
 
     public void setId(UUID id) {
         this.id = id;
-    }
-
-    public String getIdentification() {
-        return identification;
-    }
-
-    public void setIdentification(String identification) {
-        this.identification = identification;
     }
 
     public BillingFormType getBillingFormType() {

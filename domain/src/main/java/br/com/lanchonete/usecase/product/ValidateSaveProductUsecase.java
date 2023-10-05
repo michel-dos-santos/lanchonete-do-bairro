@@ -1,9 +1,9 @@
 package br.com.lanchonete.usecase.product;
 
-import br.com.lanchonete.exception.CategoryNotFoundException;
-import br.com.lanchonete.exception.ProductFoundException;
-import br.com.lanchonete.exception.ProductInvalidException;
-import br.com.lanchonete.exception.ProductNotInformedException;
+import br.com.lanchonete.exception.category.CategoryNotFoundException;
+import br.com.lanchonete.exception.product.ProductFoundException;
+import br.com.lanchonete.exception.product.ProductInvalidException;
+import br.com.lanchonete.exception.product.ProductNotInformedException;
 import br.com.lanchonete.model.LogCode;
 import br.com.lanchonete.model.Product;
 import br.com.lanchonete.port.repository.CategoryRepository;

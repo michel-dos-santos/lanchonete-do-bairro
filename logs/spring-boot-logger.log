@@ -1,5 +1,18 @@
-2023-09-10 10:58:35,483 INFO br.com.lanchonete.Application [main] Starting Application using Java 17.0.8 with PID 7326 (/mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro/application/target/classes started by michel in /mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro)
-2023-09-10 10:58:35,489 DEBUG br.com.lanchonete.Application [main] Running with Spring Boot v3.1.3, Spring v6.0.11
-2023-09-10 10:58:35,490 INFO br.com.lanchonete.Application [main] No active profile set, falling back to 1 default profile: "default"
-2023-09-10 10:58:44,424 INFO br.com.lanchonete.Application [main] Started Application in 10.004 seconds (process running for 10.887)
-2023-09-10 11:01:20,068 INFO br.com.lanchonete.usecase.SaveClientUsecase [http-nio-8010-exec-8] Iniciando o processo de criação do cliente no sistema
+2023-10-02 19:40:22,728 INFO br.com.lanchonete.Application [main] Starting Application using Java 17.0.8 with PID 10191 (/mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro/application/target/classes started by michel in /mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro)
+2023-10-02 19:40:22,735 DEBUG br.com.lanchonete.Application [main] Running with Spring Boot v3.1.3, Spring v6.0.11
+2023-10-02 19:40:22,740 INFO br.com.lanchonete.Application [main] The following 1 profile is active: "local"
+2023-10-02 19:40:33,048 INFO br.com.lanchonete.Application [main] Started Application in 11.215 seconds (process running for 11.947)
+2023-10-02 19:56:18,127 INFO br.com.lanchonete.Application [main] Starting Application using Java 17.0.8 with PID 10856 (/mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro/application/target/classes started by michel in /mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro)
+2023-10-02 19:56:18,128 DEBUG br.com.lanchonete.Application [main] Running with Spring Boot v3.1.3, Spring v6.0.11
+2023-10-02 19:56:18,130 INFO br.com.lanchonete.Application [main] The following 1 profile is active: "local"
+2023-10-02 19:56:24,354 INFO br.com.lanchonete.Application [main] Started Application in 7.006 seconds (process running for 7.457)
+2023-10-02 20:11:03,361 INFO br.com.lanchonete.Application [main] Starting Application using Java 17.0.8 with PID 4724 (/mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro/application/target/classes started by michel in /mnt/2f3df476-42c0-4659-ab93-f58a200a8866/Desenvolvimento/Projetos/Pós Tech - Software Architecture/Lanchonete do Bairro/lanchonete-do-bairro)
+2023-10-02 20:11:03,383 DEBUG br.com.lanchonete.Application [main] Running with Spring Boot v3.1.3, Spring v6.0.11
+2023-10-02 20:11:03,384 INFO br.com.lanchonete.Application [main] The following 1 profile is active: "local"
+2023-10-02 20:11:11,881 INFO br.com.lanchonete.Application [main] Started Application in 9.208 seconds (process running for 9.91)
+2023-10-02 20:12:28,118 INFO br.com.lanchonete.usecase.category.FindAllCategoryUsecase [http-nio-8081-exec-4] TAG: _0012 - MESSAGE: Iniciando o processo de listagem das categorias
+2023-10-02 20:12:28,205 INFO br.com.lanchonete.usecase.category.FindAllCategoryUsecase [http-nio-8081-exec-4] TAG: _0013 - MESSAGE: Listagem das categorias executada com sucesso
+2023-10-02 20:12:44,052 INFO br.com.lanchonete.usecase.category.FindAllCategoryUsecase [http-nio-8081-exec-6] TAG: _0012 - MESSAGE: Iniciando o processo de listagem das categorias
+2023-10-02 20:12:44,056 INFO br.com.lanchonete.usecase.category.FindAllCategoryUsecase [http-nio-8081-exec-6] TAG: _0013 - MESSAGE: Listagem das categorias executada com sucesso
+2023-10-02 20:12:45,143 INFO br.com.lanchonete.usecase.category.FindAllCategoryUsecase [http-nio-8081-exec-5] TAG: _0012 - MESSAGE: Iniciando o processo de listagem das categorias
+2023-10-02 20:12:45,146 INFO br.com.lanchonete.usecase.category.FindAllCategoryUsecase [http-nio-8081-exec-5] TAG: _0013 - MESSAGE: Listagem das categorias executada com sucesso
