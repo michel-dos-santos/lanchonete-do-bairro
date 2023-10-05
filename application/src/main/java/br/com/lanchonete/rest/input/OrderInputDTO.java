@@ -13,7 +13,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class OrderInputDTO {
 
-    @NotNull(message = "Identificação do cliente que realizou o pedido não pode ser nulo")
     private UUID clientID;
     @NotNull(message = "Cobrança do pedido não pode ser nulo")
     private @Valid BillingInputDTO billing;

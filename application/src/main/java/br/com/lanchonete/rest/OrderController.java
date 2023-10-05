@@ -24,6 +24,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import static br.com.lanchonete.rest.OrderController.BASE_PATH;
 
@@ -50,9 +51,13 @@ public class OrderController {
     public OrderOutputDTO checkoutOrder(@RequestBody @Valid OrderInputDTO orderInputDTO) throws APIException {
         try {
             Order order = modelMapper.map(orderInputDTO, Order.class);
-            Client client = new Client();
-            client.setId(orderInputDTO.getClientID());
-            order.setClient(client);
+
+            if (Objects.nonNull(orderInputDTO.getClientID())) {
+                Client client = new Client();
+                client.setId(orderInputDTO.getClientID());
+                order.setClient(client);
+            }
+
             BillingForm billingForm = new BillingForm();
             billingForm.setBillingFormType(orderInputDTO.getBilling().getBillingFormType());
             order.getBilling().setBillingForm(billingForm);
