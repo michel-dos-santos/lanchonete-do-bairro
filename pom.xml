@@ -19,8 +19,10 @@
 
     <modules>
         <module>application</module>
-        <module>domain</module>
         <module>infrastructure</module>
+        <module>adapter-rest</module>
+        <module>adapter-log</module>
+        <module>adapter-db</module>
     </modules>
 
     <properties>

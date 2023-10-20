@@ -1,7 +1,7 @@
 # Project exclude paths
-/application/target/
-/domain/target/
-/infrastructure/target/
-/logs/
+*/target/
+*/logs/
 .idea/
+*.log
+.idea
 *.iml
