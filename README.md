@@ -16,7 +16,3 @@
 
 <p align="center"> Projeto criado com intuido de garantir que a lanchonete possa atender os clientes de maneira eficiente, gerenciando seus pedidos e estoques de forma adequada...
 </p>
-
-driver => inbound => adapter-rest = temporariamente esta todas as apis, mas no futuro o ideal seria separar um adapter para cada api
-domain = core da aplicação onde contem regras de negocio e as portas de entrada e saida
-infro
