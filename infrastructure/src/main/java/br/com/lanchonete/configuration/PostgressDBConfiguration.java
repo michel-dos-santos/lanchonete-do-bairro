@@ -8,6 +8,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaAuditing
-@EnableJpaRepositories(basePackages = "br.com.lanchonete.repository.postgres")
+@EnableJpaRepositories(basePackages = "br.com.lanchonete.postgres")
 public class PostgressDBConfiguration {
 }
