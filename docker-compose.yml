@@ -1,18 +1,14 @@
 version: '3.3'
 
 networks:
-  commons-api:
+  commons-app:
     driver: bridge
 
-volumes:
-  elasticsearch_data:
-    driver: local
-
 services:
-  postgres-compose:
+  postgres-db:
     image: postgres
     restart: always
-    container_name: postgres-compose
+    container_name: postgres-db
     environment:
       POSTGRES_PASSWORD: "postgres"
     ports:
@@ -21,4 +17,21 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./data/postgres:/var/lib/postgresql/data
     networks:
-      - commons-api
+      - commons-app
+  rest-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    container_name: rest-api
+    environment:
+      - PROFILE=local
+      - DB_URL=jdbc:postgresql://postgres-db:5432/postgres?currentSchema=public
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+    ports:
+      - "8081:8081"
+    networks:
+      - commons-app
+    depends_on:
+      - postgres-db
