@@ -5,7 +5,7 @@
     <parent>
         <artifactId>lanchonete-do-bairro</artifactId>
         <groupId>br.com.lanchonete</groupId>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -32,19 +32,19 @@
         <dependency>
             <groupId>br.com.lanchonete</groupId>
             <artifactId>application</artifactId>
-            <version>1.0.0</version>
+            <version>1.1.0</version>
         </dependency>
 
         <dependency>
             <groupId>br.com.lanchonete</groupId>
             <artifactId>adapter-log</artifactId>
-            <version>1.0.0</version>
+            <version>1.1.0</version>
         </dependency>
 
         <dependency>
             <groupId>br.com.lanchonete</groupId>
             <artifactId>adapter-db</artifactId>
-            <version>1.0.0</version>
+            <version>1.1.0</version>
         </dependency>
 
         <dependency>
