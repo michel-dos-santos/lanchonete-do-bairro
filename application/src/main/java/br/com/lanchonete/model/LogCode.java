@@ -36,6 +36,12 @@ public abstract class LogCode {
         _0025("Cobrança do pedido criado com sucesso"),
         _0026("Iniciando o processo de busca dos pedidos com base no status no sistema"),
         _0027("Pedidos encontrados com sucesso"),
+        _0028("Iniciando o processo de notificação da cobrança do pedido para o hub de pagamento"),
+        _0029("Notificação da cobrança do pedido para o hub de pagamento realizada com sucesso"),
+        _0030("Enviando a cobrança para o sistema do MercadoPago"),
+        _0031("Envio da cobrança para o sistema do MercadoPago realizada com sucesso"),
+        _0032("Enviando a cobrança para o sistema do Itaú"),
+        _0033("Envio da cobrança para o sistema do Itaú realizada com sucesso"),
         ;
 
         private String description;

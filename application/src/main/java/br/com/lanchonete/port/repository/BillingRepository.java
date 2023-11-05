@@ -4,6 +4,6 @@ import br.com.lanchonete.model.Billing;
 
 public interface BillingRepository {
 
-    Billing generate(Billing billing);
+    Billing save(Billing billing);
 
 }

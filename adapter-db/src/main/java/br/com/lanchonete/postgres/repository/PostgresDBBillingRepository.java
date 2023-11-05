@@ -20,7 +20,7 @@ public class PostgresDBBillingRepository implements BillingRepository {
 
     @Override
     @Transactional
-    public Billing generate(Billing billing) {
+    public Billing save(Billing billing) {
         BillingEntity billingEntity = modelMapper.map(billing, BillingEntity.class);
         return modelMapper.map(billingRepository.save(billingEntity), Billing.class);
     }

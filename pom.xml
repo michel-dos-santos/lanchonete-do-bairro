@@ -23,6 +23,7 @@
         <module>adapter-rest</module>
         <module>adapter-log</module>
         <module>adapter-db</module>
+        <module>adapter-producer-billing</module>
     </modules>
 
     <properties>

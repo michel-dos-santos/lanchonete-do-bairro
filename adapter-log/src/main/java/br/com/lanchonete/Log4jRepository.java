@@ -1,4 +1,4 @@
-package br.com.lanchonete.repository.log;
+package br.com.lanchonete;
 
 import br.com.lanchonete.model.LogCode;
 import br.com.lanchonete.port.repository.LogRepository;
