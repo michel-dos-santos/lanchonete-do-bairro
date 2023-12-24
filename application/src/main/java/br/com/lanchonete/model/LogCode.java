@@ -46,6 +46,10 @@ public abstract class LogCode {
         _0035("Recebido informação da cobrança com sucesso"),
         _0036("Atualizado informação da cobrança com sucesso"),
         _0037("Recebendo informação da cobrança do sistema do Mercado Pago"),
+        _0038("Buscando dados do meu pedido com base no id"),
+        _0039("Meu pedido encontrado com sucesso"),
+        _0040("Buscando status do pagamento do meu pedido com base no id"),
+        _0041("Status do pagamento do meu pedido encontrado com sucesso"),
         ;
 
         private String description;

@@ -4,9 +4,7 @@ import br.com.lanchonete.port.repository.LogRepository;
 import br.com.lanchonete.port.repository.OrderRepository;
 import br.com.lanchonete.port.usecase.billing.GenerateBilling;
 import br.com.lanchonete.port.usecase.order.ValidateCheckoutOrder;
-import br.com.lanchonete.usecase.order.CheckoutOrderUsecase;
-import br.com.lanchonete.usecase.order.FindAllOrdersByStatusUsecase;
-import br.com.lanchonete.usecase.order.ValidateCheckoutOrderUsecase;
+import br.com.lanchonete.usecase.order.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -27,4 +25,13 @@ public class OrderBeanConfiguration {
         return new FindAllOrdersByStatusUsecase(logRepository, orderRepository);
     }
 
+    @Bean
+    FindMyOrderUsecase findMyOrderUsecase(LogRepository logRepository, OrderRepository orderRepository) {
+        return new FindMyOrderUsecase(logRepository, orderRepository);
+    }
+
+    @Bean
+    FindStatusPaymentMyOrderUsecase findStatusPaymentMyOrderUsecase(LogRepository logRepository, OrderRepository orderRepository) {
+        return new FindStatusPaymentMyOrderUsecase(logRepository, orderRepository);
+    }
 }
