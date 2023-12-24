@@ -29,7 +29,7 @@ public class NotifyBillingHubItauRepository implements NotifyBillingHubRepositor
     public void sendNotification(Billing billing) {
         logRepository.info(NotifyBillingHubItauRepository.class, LogCode.LogCodeInfo._0032);
         itauServiceFeignClient.billing(new ItauRequestDTO(billing.getId().toString(), billing.getTotalPrice()));
-        logRepository.info(NotifyBillingHubItauRepository.class, LogCode.LogCodeInfo._0032);
+        logRepository.info(NotifyBillingHubItauRepository.class, LogCode.LogCodeInfo._0033);
     }
 
 }

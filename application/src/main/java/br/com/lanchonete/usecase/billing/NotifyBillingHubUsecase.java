@@ -4,8 +4,8 @@ import br.com.lanchonete.exception.billing.BillingHubNotFoundException;
 import br.com.lanchonete.model.Billing;
 import br.com.lanchonete.model.BillingFormType;
 import br.com.lanchonete.model.LogCode;
-import br.com.lanchonete.port.repository.NotifyBillingHubRepository;
 import br.com.lanchonete.port.repository.LogRepository;
+import br.com.lanchonete.port.repository.NotifyBillingHubRepository;
 import br.com.lanchonete.port.usecase.billing.NotifyBillingHub;
 
 import java.util.List;

@@ -1,21 +1,18 @@
-package br.com.lanchonete.model;
+package br.com.lanchonete.hub.base.enumerate;
 
 import java.util.Arrays;
 
-public enum StatusType {
-    RECEIVED("Recebido"),
-    IN_BILLING("Em cobrança"),
-    IN_PREPARATION("Em preparação"),
-    READY("Pronto"),
-    FINISHED("Finalizado");
+public enum StatusPaymentType {
+    PENDING_PAYMENT("Pendente de Pagamento"),
+    PAID("Pago");
 
     private String description;
 
-    StatusType(String description) {
+    StatusPaymentType(String description) {
         this.description = description;
     }
 
-    public static StatusType get(String type) {
+    public static StatusPaymentType get(String type) {
         return Arrays.stream(values()).filter(t -> t.name().equalsIgnoreCase(type)).findFirst().orElse(null);
     }
 

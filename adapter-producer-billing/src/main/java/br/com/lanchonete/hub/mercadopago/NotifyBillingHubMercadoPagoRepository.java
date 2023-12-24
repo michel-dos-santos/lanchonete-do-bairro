@@ -1,13 +1,11 @@
 package br.com.lanchonete.hub.mercadopago;
 
 import br.com.lanchonete.hub.mercadopago.dto.MercadoPagoRequestDTO;
-import br.com.lanchonete.hub.mercadopago.dto.MercadoPagoResponseDTO;
 import br.com.lanchonete.model.Billing;
 import br.com.lanchonete.model.BillingFormType;
 import br.com.lanchonete.model.LogCode;
 import br.com.lanchonete.port.repository.LogRepository;
 import br.com.lanchonete.port.repository.NotifyBillingHubRepository;
-import br.com.lanchonete.usecase.billing.GenerateBillingUsecase;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
