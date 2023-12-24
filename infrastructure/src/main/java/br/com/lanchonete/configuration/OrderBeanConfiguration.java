@@ -34,4 +34,9 @@ public class OrderBeanConfiguration {
     FindStatusPaymentMyOrderUsecase findStatusPaymentMyOrderUsecase(LogRepository logRepository, OrderRepository orderRepository) {
         return new FindStatusPaymentMyOrderUsecase(logRepository, orderRepository);
     }
+
+    @Bean
+    UpdateStatusOrderUsecase updateStatusOrderUsecase(LogRepository logRepository, OrderRepository orderRepository) {
+        return new UpdateStatusOrderUsecase(logRepository, orderRepository);
+    }
 }

@@ -7,10 +7,7 @@ import br.com.lanchonete.rest.input.OrderInputDTO;
 import br.com.lanchonete.rest.output.MyOrderOutputDTO;
 import br.com.lanchonete.rest.output.OrderOutputDTO;
 import br.com.lanchonete.rest.output.StatusPaymentMyOrder;
-import br.com.lanchonete.usecase.order.CheckoutOrderUsecase;
-import br.com.lanchonete.usecase.order.FindAllOrdersByStatusUsecase;
-import br.com.lanchonete.usecase.order.FindMyOrderUsecase;
-import br.com.lanchonete.usecase.order.FindStatusPaymentMyOrderUsecase;
+import br.com.lanchonete.usecase.order.*;
 import io.micrometer.core.annotation.Counted;
 import io.micrometer.core.annotation.Timed;
 import io.swagger.v3.oas.annotations.Operation;
@@ -47,6 +44,8 @@ public class OrderController {
     private FindMyOrderUsecase findMyOrderUsecase;
     @Autowired
     private FindStatusPaymentMyOrderUsecase findStatusPaymentMyOrderUsecase;
+    @Autowired
+    private UpdateStatusOrderUsecase updateStatusOrderUsecase;
 
     @ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Indica que o checkout do pedido foi executada com sucesso") })
     @Operation(summary = "Persiste os dados do pedido")
@@ -122,6 +121,19 @@ public class OrderController {
     public StatusPaymentMyOrder findStatusPaymentMyOrder(@PathVariable UUID id) throws APIException {
         try {
             return new StatusPaymentMyOrder(findStatusPaymentMyOrderUsecase.findStatusPaymentMyOrder(id));
+        } catch (Exception e) {
+            throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
+        }
+    }
+
+    @ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Indica que a atualização do status do pedido foi executada com sucesso") })
+    @Operation(summary = "Atualiza o status do pedido")
+    @Counted(value = "execution.count.updateStatusOrder")
+    @Timed(value = "execution.time.updateStatusOrder", longTask = true)
+    @PatchMapping(value = "/{id}/status/{status}")
+    public void updateStatusOrder(@PathVariable UUID id, @PathVariable StatusType status) throws APIException {
+        try {
+            updateStatusOrderUsecase.updateStatusOrder(id, status);
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
