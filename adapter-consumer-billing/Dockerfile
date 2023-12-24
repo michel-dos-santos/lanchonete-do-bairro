@@ -28,4 +28,4 @@ COPY --from=builder /app .
 EXPOSE 8080
 
 # Comando para executar a aplicação Spring Boot
-ENTRYPOINT ["java", "-jar", "/app/adapter-rest/target/adapter-rest-1.0.0.jar", "--spring.profiles.active=${PROFILE}", "--spring.datasource.url=${DB_URL}", "--spring.datasource.username=${DB_USER}", "--spring.datasource.password=${DB_PASSWORD}"]
+ENTRYPOINT ["java", "-jar", "/app/adapter-consumer-billing/target/adapter-consumer-billing-1.1.0.jar", "--spring.profiles.active=${PROFILE}", "--spring.datasource.url=${DB_URL}", "--spring.datasource.username=${DB_USER}", "--spring.datasource.password=${DB_PASSWORD}"]
