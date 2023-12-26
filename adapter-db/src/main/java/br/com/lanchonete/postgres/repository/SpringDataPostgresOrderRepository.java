@@ -17,5 +17,12 @@ public interface SpringDataPostgresOrderRepository extends JpaRepository<OrderEn
     @Query(value = "select o from OrderEntity o inner join o.billing b where b.id = :id")
     Optional<OrderEntity> findByBillingId(UUID id);
 
+    @Query(value = "select o from OrderEntity o where o.status in (:status) " +
+            "order by " +
+            "case when status = 'READY' then 0 " +
+            "when status = 'IN_PREPARATION' then 1 " +
+            "when status = 'RECEIVED' then 2 else 3 end asc, " +
+            "o.createdAt asc ")
+    List<OrderEntity> findAllOrdersMonitor(List<StatusType> status);
 
 }

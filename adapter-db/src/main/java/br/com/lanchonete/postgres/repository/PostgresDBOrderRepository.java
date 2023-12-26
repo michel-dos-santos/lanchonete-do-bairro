@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Type;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -79,6 +80,19 @@ public class PostgresDBOrderRepository implements OrderRepository {
     public Order save(Order order) {
         OrderEntity orderEntity = modelMapper.map(order, OrderEntity.class);
         return modelMapper.map(orderRepository.save(orderEntity), Order.class);
+    }
+
+    @Override
+    public List<Order> listOrdersMonitor() {
+        List<OrderEntity> orderEntityList = orderRepository.findAllOrdersMonitor(
+                Arrays.asList(
+                        br.com.lanchonete.postgres.entity.StatusType.READY,
+                        br.com.lanchonete.postgres.entity.StatusType.IN_PREPARATION,
+                        br.com.lanchonete.postgres.entity.StatusType.RECEIVED
+                )
+        );
+        Type type = new TypeToken<List<Order>>() {}.getType();
+        return modelMapper.map(orderEntityList, type);
     }
 
 }

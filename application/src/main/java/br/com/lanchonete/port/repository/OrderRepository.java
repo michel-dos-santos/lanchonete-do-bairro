@@ -19,4 +19,6 @@ public interface OrderRepository {
 
     Order save(Order order);
 
+    List<Order> listOrdersMonitor();
+
 }

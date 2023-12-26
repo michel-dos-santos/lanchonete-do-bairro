@@ -39,4 +39,10 @@ public class OrderBeanConfiguration {
     UpdateStatusOrderUsecase updateStatusOrderUsecase(LogRepository logRepository, OrderRepository orderRepository) {
         return new UpdateStatusOrderUsecase(logRepository, orderRepository);
     }
+
+    @Bean
+    ListOrdersMonitorUsecase listOrdersMonitorUsecase(LogRepository logRepository, OrderRepository orderRepository) {
+        return new ListOrdersMonitorUsecase(logRepository, orderRepository);
+    }
+
 }
