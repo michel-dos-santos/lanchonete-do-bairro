@@ -52,6 +52,8 @@ public abstract class LogCode {
         _0041("Status do pagamento do meu pedido encontrado com sucesso"),
         _0042("Atualizando status do pedido com base no id"),
         _0043("Status do pedido atualizado com sucesso"),
+        _0044("Buscando pedidos para listagem do monitor"),
+        _0045("Pedidos para listagem do monitor encontrado com sucesso"),
         ;
 
         private String description;

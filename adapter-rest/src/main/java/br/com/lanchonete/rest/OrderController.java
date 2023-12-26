@@ -46,6 +46,8 @@ public class OrderController {
     private FindStatusPaymentMyOrderUsecase findStatusPaymentMyOrderUsecase;
     @Autowired
     private UpdateStatusOrderUsecase updateStatusOrderUsecase;
+    @Autowired
+    private ListOrdersMonitorUsecase listOrdersMonitorUsecase;
 
     @ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Indica que o checkout do pedido foi executada com sucesso") })
     @Operation(summary = "Persiste os dados do pedido")
@@ -134,6 +136,21 @@ public class OrderController {
     public void updateStatusOrder(@PathVariable UUID id, @PathVariable StatusType status) throws APIException {
         try {
             updateStatusOrderUsecase.updateStatusOrder(id, status);
+        } catch (Exception e) {
+            throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
+        }
+    }
+
+    @ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Indica que a listagem dos pedidos (Pronto > Em Preparação > Recebido) foi executada com sucesso") })
+    @Operation(summary = "Consulta a listagem dos pedidos (Pronto > Em Preparação > Recebido)")
+    @Counted(value = "execution.count.listOrders")
+    @Timed(value = "execution.time.listOrders", longTask = true)
+    @GetMapping(value = "/monitor")
+    public List<MyOrderOutputDTO> listOrders() throws APIException {
+        try {
+            List<Order> orders = listOrdersMonitorUsecase.listOrdersMonitor();
+            Type type = new TypeToken<List<MyOrderOutputDTO>>() {}.getType();
+            return modelMapper.map(orders, type);
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
