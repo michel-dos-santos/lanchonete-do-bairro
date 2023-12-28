@@ -17,16 +17,21 @@ jobs:
           DOCKER_ACCESS_TOKEN: ${{secrets.DOCKER_ACCESS_TOKEN}}
 
       - name: "🐋 docker login"
-        run: docker login -u "$DOCKER_USER" -p "$DOCKER_ACCESS_TOKEN"
+        run: |
+          docker login -u "$DOCKER_USER" -p "$DOCKER_ACCESS_TOKEN"
 
       - name: "🖼️ build docker image adapter-rest-fast-food"
-        run: docker build . --file adapter-rest/Dockerfile --tag "$DOCKER_USER"/adapter-rest-fast-food:latest
+        run: |
+          docker build . --file adapter-rest/Dockerfile --tag "$DOCKER_USER"/adapter-rest-fast-food:latest
 
       - name: "🚀 docker push adapter-rest-fast-food"
-        run: docker push "$DOCKER_USER"/adapter-rest-fast-food:latest
+        run: |
+          docker push "$DOCKER_USER"/adapter-rest-fast-food:latest
 
       - name: "🖼️ build docker image adapter-consumer-billing-fast-food"
-        run: docker build . --file adapter-consumer-billing/Dockerfile --tag "$DOCKER_USER"/adapter-consumer-billing-fast-food:latest
+        run: |
+          docker build . --file adapter-consumer-billing/Dockerfile --tag "$DOCKER_USER"/adapter-consumer-billing-fast-food:latest
 
       - name: "🚀 docker push adapter-consumer-billing-fast-food"
-        run: docker push "$DOCKER_USER"/adapter-consumer-billing-fast-food:latest
+        run: |
+          docker push "$DOCKER_USER"/adapter-consumer-billing-fast-food:latest
