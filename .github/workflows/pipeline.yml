@@ -12,38 +12,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        env:
+          DOCKER_USER: ${{secrets.DOCKER_USER}}
+          DOCKER_ACCESS_TOKEN: ${{secrets.DOCKER_ACCESS_TOKEN}}
 
       - name: "🐋 docker login"
-        env:
-          DOCKER_USER: ${{secrets.DOCKER_USER}}
-          DOCKER_ACCESS_TOKEN: ${{secrets.DOCKER_ACCESS_TOKEN}}
-        run: |
-          docker login -u "$DOCKER_USER" -p "$DOCKER_ACCESS_TOKEN"
+        run: docker login -u "$DOCKER_USER" -p "$DOCKER_ACCESS_TOKEN"
 
       - name: "🖼️ build docker image adapter-rest-fast-food"
-        env:
-          DOCKER_USER: ${{secrets.DOCKER_USER}}
-          DOCKER_ACCESS_TOKEN: ${{secrets.DOCKER_ACCESS_TOKEN}}
-        run: |
-          docker build . --file adapter-rest/Dockerfile --tag "$DOCKER_USER"/adapter-rest-fast-food:latest
+        run: docker build . --file adapter-rest/Dockerfile --tag "$DOCKER_USER"/adapter-rest-fast-food:latest
 
       - name: "🚀 docker push adapter-rest-fast-food"
-        env:
-          DOCKER_USER: ${{secrets.DOCKER_USER}}
-          DOCKER_ACCESS_TOKEN: ${{secrets.DOCKER_ACCESS_TOKEN}}
-        run: |
-          docker push "$DOCKER_USER"/adapter-rest-fast-food:latest
+        run: docker push "$DOCKER_USER"/adapter-rest-fast-food:latest
 
       - name: "🖼️ build docker image adapter-consumer-billing-fast-food"
-        env:
-          DOCKER_USER: ${{secrets.DOCKER_USER}}
-          DOCKER_ACCESS_TOKEN: ${{secrets.DOCKER_ACCESS_TOKEN}}
-        run: |
-          docker build . --file adapter-consumer-billing/Dockerfile --tag "$DOCKER_USER"/adapter-consumer-billing-fast-food:latest
+        run: docker build . --file adapter-consumer-billing/Dockerfile --tag "$DOCKER_USER"/adapter-consumer-billing-fast-food:latest
 
       - name: "🚀 docker push adapter-consumer-billing-fast-food"
-        env:
-          DOCKER_USER: ${{secrets.DOCKER_USER}}
-          DOCKER_ACCESS_TOKEN: ${{secrets.DOCKER_ACCESS_TOKEN}}
-        run: |
-          docker push "$DOCKER_USER"/adapter-consumer-billing-fast-food:latest
+        run: docker push "$DOCKER_USER"/adapter-consumer-billing-fast-food:latest
