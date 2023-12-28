@@ -18,7 +18,7 @@ jobs:
           DOCKER_USER: ${{secrets.DOCKER_USER}}
           DOCKER_ACCESS_TOKEN: ${{secrets.DOCKER_ACCESS_TOKEN}}
         run: |
-          docker login -u $DOCKER_USER -p $DOCKER_ACCESS_TOKEN --password-stdin
+          docker login -u $DOCKER_USER -p $DOCKER_ACCESS_TOKEN
 
       - name: "🖼️ build docker image adapter-rest-fast-food"
         run: docker build . --file adapter-rest/Dockerfile --tag ${{secrets.DOCKER_USER}}/adapter-rest-fast-food:latest
