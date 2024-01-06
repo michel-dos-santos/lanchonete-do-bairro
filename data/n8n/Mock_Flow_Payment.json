@@ -7,13 +7,13 @@
         "height": 288.6528555431132,
         "width": 285.2732362821956
       },
-      "id": "bd2e5d86-617a-409c-8c18-0e75be214df1",
+      "id": "46324193-2e44-4d70-b46a-a80e589a6550",
       "name": "Sticky Note",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1900,
-        180
+        460,
+        460
       ]
     },
     {
@@ -22,13 +22,13 @@
         "height": 308.79171332586793,
         "width": 287.79059350503974
       },
-      "id": "6e611a68-c76d-4830-b200-c4dc0a7a416c",
+      "id": "c21d4f92-a5df-4539-9f7b-504307bbbe0b",
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1900,
-        545
+        460,
+        825
       ]
     },
     {
@@ -38,13 +38,13 @@
         "responseCode": 201,
         "options": {}
       },
-      "id": "69afe02d-2b21-4506-80c8-ea529e39a10c",
+      "id": "1a0c2155-90df-4aad-8da9-1717a742f228",
       "name": "MP - Recebe a cobrança",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
       "position": [
-        1980,
-        305
+        540,
+        585
       ],
       "webhookId": "e3293550-cceb-495c-af6d-1e496fd4c861"
     },
@@ -55,13 +55,13 @@
         "responseCode": 201,
         "options": {}
       },
-      "id": "7c5b134b-70b4-4d1f-9157-a6fff765a2c0",
+      "id": "2386a65e-c9b1-4a4f-82eb-c0ce5c26770a",
       "name": "ITAU - Recebe a cobrança",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
       "position": [
-        1980,
-        665
+        540,
+        945
       ],
       "webhookId": "e3293550-cceb-495c-af6d-1e496fd4c861"
     },
@@ -69,20 +69,20 @@
       "parameters": {
         "unit": "seconds"
       },
-      "id": "f462e167-1fe3-4513-8e4a-fb53108a9909",
+      "id": "9e610376-f6e0-4330-be30-7d234f344f09",
       "name": "Cliente realiza o pagamento",
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1,
       "position": [
-        2260,
-        300
+        820,
+        580
       ],
       "webhookId": "7425c8ec-46e1-4b8f-991d-f188d3a57d29"
     },
     {
       "parameters": {
         "method": "PUT",
-        "url": "http://adapter-consumer-billing-svc-node-port:31082/api/v1/consumer/mercado-pago",
+        "url": "http://adapter-consumer-billing-svc-node-port:8082/api/v1/consumer/mercado-pago",
         "sendBody": true,
         "bodyParameters": {
           "parameters": [
@@ -102,33 +102,33 @@
         },
         "options": {}
       },
-      "id": "d132981e-6ee6-47e1-a720-3f3480f99998",
+      "id": "dfeeeafa-348a-416c-8ad5-eccac6756d0e",
       "name": "Envia atualização da cobrança para a lanchonete",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        2460,
-        300
+        1020,
+        580
       ]
     },
     {
       "parameters": {
         "unit": "seconds"
       },
-      "id": "bca8b8a8-d6b0-4284-a6de-1d631cc2e43b",
+      "id": "a49cc00d-d5e8-4af8-b10f-cbae34c1a42a",
       "name": "Cliente realiza o pagamento1",
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1,
       "position": [
-        2260,
-        660
+        820,
+        940
       ],
       "webhookId": "7425c8ec-46e1-4b8f-991d-f188d3a57d29"
     },
     {
       "parameters": {
         "method": "PUT",
-        "url": "http://adapter-consumer-billing-svc-node-port:31082/api/v1/consumer/itau",
+        "url": "http://adapter-consumer-billing-svc-node-port:8082/api/v1/consumer/itau",
         "sendBody": true,
         "bodyParameters": {
           "parameters": [
@@ -148,13 +148,13 @@
         },
         "options": {}
       },
-      "id": "30787db0-9efb-4a55-9527-b23885bb6fb6",
+      "id": "bd6e2f2f-20d7-4850-ac96-03f367223893",
       "name": "Envia atualização da cobrança para a lanchonete1",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        2460,
-        660
+        1020,
+        940
       ]
     }
   ],
@@ -205,14 +205,14 @@
       ]
     }
   },
-  "active": true,
+  "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "3cfc61c4-064b-4406-a1c7-2403acfc8c88",
-  "id": "FIOvxZaCUz5rFeAx",
+  "versionId": "c30ad4f0-99f4-40ee-b7f9-24692cd21206",
+  "id": "T9vh9Og84jKfEk1X",
   "meta": {
-    "instanceId": "e69da415357467ca9f77641972a55c177976f9f09c7c554e8203a6d63694dac7"
+    "instanceId": "6e7045801df9f762935223da99f2d5ba2f467fbcae2ad2373ccc9f4fc923505f"
   },
   "tags": []
 }
