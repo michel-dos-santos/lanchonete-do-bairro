@@ -1,5 +1,5 @@
 {
-  "name": "Mock Flow Payment",
+  "name": "Mock_Flow_Payment",
   "nodes": [
     {
       "parameters": {
@@ -7,13 +7,13 @@
         "height": 288.6528555431132,
         "width": 285.2732362821956
       },
-      "id": "b8f89fe9-3191-4301-ac2a-072743d4a827",
+      "id": "bd2e5d86-617a-409c-8c18-0e75be214df1",
       "name": "Sticky Note",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1020,
-        235
+        1900,
+        180
       ]
     },
     {
@@ -22,13 +22,13 @@
         "height": 308.79171332586793,
         "width": 287.79059350503974
       },
-      "id": "e7f09c9f-9db1-4199-991a-6ca8fd5ba297",
+      "id": "6e611a68-c76d-4830-b200-c4dc0a7a416c",
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1020,
-        600
+        1900,
+        545
       ]
     },
     {
@@ -38,13 +38,13 @@
         "responseCode": 201,
         "options": {}
       },
-      "id": "1c66bd4a-e4f0-4e68-93fb-b17d5ada91e7",
+      "id": "69afe02d-2b21-4506-80c8-ea529e39a10c",
       "name": "MP - Recebe a cobrança",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
       "position": [
-        1100,
-        360
+        1980,
+        305
       ],
       "webhookId": "e3293550-cceb-495c-af6d-1e496fd4c861"
     },
@@ -55,13 +55,13 @@
         "responseCode": 201,
         "options": {}
       },
-      "id": "624a4856-2f6f-44d7-a618-14204e7c4cf1",
+      "id": "7c5b134b-70b4-4d1f-9157-a6fff765a2c0",
       "name": "ITAU - Recebe a cobrança",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
       "position": [
-        1100,
-        720
+        1980,
+        665
       ],
       "webhookId": "e3293550-cceb-495c-af6d-1e496fd4c861"
     },
@@ -69,20 +69,20 @@
       "parameters": {
         "unit": "seconds"
       },
-      "id": "4cf6319d-dba9-46ac-a4bf-13d6f7e1e534",
+      "id": "f462e167-1fe3-4513-8e4a-fb53108a9909",
       "name": "Cliente realiza o pagamento",
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1,
       "position": [
-        1460,
-        520
+        2260,
+        300
       ],
       "webhookId": "7425c8ec-46e1-4b8f-991d-f188d3a57d29"
     },
     {
       "parameters": {
         "method": "PUT",
-        "url": "http://adapter-consumer-billing:8082/api/v1/consumer/itau",
+        "url": "http://adapter-consumer-billing-svc-node-port:31082/api/v1/consumer/mercado-pago",
         "sendBody": true,
         "bodyParameters": {
           "parameters": [
@@ -102,13 +102,59 @@
         },
         "options": {}
       },
-      "id": "0a520e7b-fb85-4dad-9052-e3f3793bd826",
+      "id": "d132981e-6ee6-47e1-a720-3f3480f99998",
       "name": "Envia atualização da cobrança para a lanchonete",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        1700,
-        520
+        2460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "bca8b8a8-d6b0-4284-a6de-1d631cc2e43b",
+      "name": "Cliente realiza o pagamento1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        2260,
+        660
+      ],
+      "webhookId": "7425c8ec-46e1-4b8f-991d-f188d3a57d29"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "http://adapter-consumer-billing-svc-node-port:31082/api/v1/consumer/itau",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "id",
+              "value": "={{ $json.body.id }}"
+            },
+            {
+              "name": "statusPaymentType",
+              "value": "PAID"
+            },
+            {
+              "name": "=totalPrice",
+              "value": "={{ $json.body.totalPrice }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "30787db0-9efb-4a55-9527-b23885bb6fb6",
+      "name": "Envia atualização da cobrança para a lanchonete1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2460,
+        660
       ]
     }
   ],
@@ -129,7 +175,7 @@
       "main": [
         [
           {
-            "node": "Cliente realiza o pagamento",
+            "node": "Cliente realiza o pagamento1",
             "type": "main",
             "index": 0
           }
@@ -146,16 +192,27 @@
           }
         ]
       ]
+    },
+    "Cliente realiza o pagamento1": {
+      "main": [
+        [
+          {
+            "node": "Envia atualização da cobrança para a lanchonete1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": true,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "e085a2f4-0934-4f21-b55f-c2067a3a00ab",
-  "id": "xROStjJYyVhbSMHS",
+  "versionId": "3cfc61c4-064b-4406-a1c7-2403acfc8c88",
+  "id": "FIOvxZaCUz5rFeAx",
   "meta": {
-    "instanceId": "abd3f23faf4867a40d1fd02d2bb1f1bc43783a9d3c36575a2f47dc291436aab1"
+    "instanceId": "e69da415357467ca9f77641972a55c177976f9f09c7c554e8203a6d63694dac7"
   },
   "tags": []
 }
