@@ -9,7 +9,7 @@ spec:
   selector:
     app: adapter-consumer-billing-pod
   ports:
-    - port: 80
+    - port: 8082
       protocol: TCP
       targetPort: 8082
       nodePort: 31082
