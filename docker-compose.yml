@@ -35,8 +35,8 @@ services:
       - commons-app
   adapter-rest:
     build:
-      context: ..
-      dockerfile: ../adapter-rest/Dockerfile
+      context: .
+      dockerfile: adapter-rest/Dockerfile
     restart: always
     container_name: adapter-rest
     environment:
@@ -54,8 +54,8 @@ services:
       - postgres-db
   adapter-consumer-billing:
     build:
-      context: ..
-      dockerfile: ../adapter-consumer-billing/Dockerfile
+      context: .
+      dockerfile: adapter-consumer-billing/Dockerfile
     restart: always
     container_name: adapter-consumer-billing
     environment:

@@ -47,7 +47,7 @@ spec:
                   key: GENERIC_TIMEZONE
           volumeMounts:
             - name: shared
-              mountPath: /home/node/.n8n
+              mountPath: /root/.n8n
               subPath: n8n
         - name: postgres-db
           image: postgres
