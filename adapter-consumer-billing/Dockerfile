@@ -25,7 +25,7 @@ WORKDIR /app
 COPY --from=builder /app .
 
 # Exponha a porta em que a aplicação Spring Boot irá escutar (substitua pela porta correta)
-EXPOSE 8080
+EXPOSE 8082
 
 # Comando para executar a aplicação Spring Boot
 ENTRYPOINT ["java", "-jar", "/app/adapter-consumer-billing/target/adapter-consumer-billing-1.1.0.jar", "--spring.profiles.active=${PROFILE}", "--spring.datasource.url=${DB_URL}", "--spring.datasource.username=${DB_USER}", "--spring.datasource.password=${DB_PASSWORD}"]
