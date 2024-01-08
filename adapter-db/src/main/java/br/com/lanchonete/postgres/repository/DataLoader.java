@@ -5,7 +5,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.UUID;
 
 @Component
@@ -33,9 +33,10 @@ public class DataLoader implements ApplicationRunner {
         ClientEntity clientEntity = new ClientEntity();
         clientEntity.setId(UUID.fromString("846f7ede-dd90-497e-83a4-4878718ebd03"));
         clientEntity.setCpf("64115683082");
-        clientEntity.setCreatedAt(Date.valueOf("2023-12-24 16:18:55.198"));
-        clientEntity.setUpdatedAt(Date.valueOf("2023-12-24 16:18:55.198"));
+        clientEntity.setCreatedAt(new Date());
+        clientEntity.setUpdatedAt(new Date());
         clientEntity.setEmail("joao.de.souza@gmail.com");
         clientEntity.setName("João de Souza");
+        springDataPostgresClientRepository.save(clientEntity);
     }
 }
