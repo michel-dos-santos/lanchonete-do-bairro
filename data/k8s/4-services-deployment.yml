@@ -45,6 +45,12 @@ spec:
                 secretKeyRef:
                   name: secrets-app
                   key: GENERIC_TIMEZONE
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 5678
+            initialDelaySeconds: 20
+            periodSeconds: 30
           volumeMounts:
             - name: shared
               mountPath: /root/.n8n
@@ -60,6 +66,11 @@ spec:
                 secretKeyRef:
                   name: secrets-app
                   key: POSTGRES_PASSWORD
+          livenessProbe:
+            exec:
+              command: [ "psql", "-U", "postgres", "-d", "postgres", "-c", "SELECT 1" ]
+            initialDelaySeconds: 15
+            timeoutSeconds: 2
           volumeMounts:
             - name: shared
               mountPath: /var/lib/postgresql/data
