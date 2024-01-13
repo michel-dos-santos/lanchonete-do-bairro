@@ -53,3 +53,9 @@ spec:
                 secretKeyRef:
                   name: secrets-app
                   key: ITAU_URL
+          livenessProbe:
+            httpGet:
+              path: /api/actuator/health
+              port: 8081
+            initialDelaySeconds: 20
+            periodSeconds: 30
