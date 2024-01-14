@@ -1,27 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: adapter-consumer-billing-deployment
+  name: adapter-rest-deployment
   labels:
-    app: adapter-consumer-billing-deployment
+    app: adapter-rest-deployment
   annotations:
-    description: "Este pod contem o adapter consumer billing da aplicacao, onde expoe as APIs para que o provedor de pagamento possa atualizar o status do pagamento do pedido"
+    description: "Este pod contem o adapter rest da aplicacao, onde expoe as APIs da lanchonete do bairro"
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: adapter-consumer-billing-deployment
+      app: adapter-rest-deployment
   template:
     metadata:
       labels:
-        app: adapter-consumer-billing-deployment
+        app: adapter-rest-deployment
     spec:
       containers:
-        - name: adapter-consumer-billing
-          image: micheldossantos/adapter-consumer-billing-fast-food:latest
+        - name: adapter-rest
+          image: micheldossantos/adapter-rest-fast-food:latest
           ports:
-            - containerPort: 8082
+            - containerPort: 8081
               protocol: TCP
+          resources:
+            requests:
+              cpu: 0.5
+            limits:
+              cpu: 1
           env:
             - name: PROFILE
               valueFrom:
@@ -43,9 +48,19 @@ spec:
                 secretKeyRef:
                   name: secrets-app
                   key: DB_PASSWORD
+            - name: MERCADO_PAGO_URL
+              valueFrom:
+                secretKeyRef:
+                  name: secrets-app
+                  key: MERCADO_PAGO_URL
+            - name: ITAU_URL
+              valueFrom:
+                secretKeyRef:
+                  name: secrets-app
+                  key: ITAU_URL
           livenessProbe:
             httpGet:
               path: /api/actuator/health
-              port: 8082
+              port: 8081
             initialDelaySeconds: 20
             periodSeconds: 30
