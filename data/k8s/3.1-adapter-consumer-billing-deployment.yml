@@ -7,7 +7,7 @@ metadata:
   annotations:
     description: "Este pod contem o adapter consumer billing da aplicacao, onde expoe as APIs para que o provedor de pagamento possa atualizar o status do pagamento do pedido"
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: adapter-consumer-billing-deployment
@@ -22,6 +22,11 @@ spec:
           ports:
             - containerPort: 8082
               protocol: TCP
+          resources:
+            requests:
+              cpu: 0.5
+            limits:
+              cpu: 1
           env:
             - name: PROFILE
               valueFrom:
