@@ -48,3 +48,9 @@ spec:
                 secretKeyRef:
                   name: secrets-app
                   key: DB_PASSWORD
+          livenessProbe:
+            httpGet:
+              path: /api/actuator/health
+              port: 8082
+            initialDelaySeconds: 20
+            periodSeconds: 30
