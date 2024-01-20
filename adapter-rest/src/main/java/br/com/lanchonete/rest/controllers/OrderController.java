@@ -1,12 +1,15 @@
-package br.com.lanchonete.rest;
+package br.com.lanchonete.rest.controllers;
 
-import br.com.lanchonete.model.*;
+import br.com.lanchonete.model.Order;
+import br.com.lanchonete.model.StatusType;
 import br.com.lanchonete.port.repository.LogRepository;
 import br.com.lanchonete.rest.exception.APIException;
-import br.com.lanchonete.rest.input.OrderInputDTO;
-import br.com.lanchonete.rest.output.MyOrderOutputDTO;
-import br.com.lanchonete.rest.output.OrderOutputDTO;
-import br.com.lanchonete.rest.output.StatusPaymentMyOrder;
+import br.com.lanchonete.rest.gateways.OrderGateway;
+import br.com.lanchonete.rest.gateways.input.OrderInputDTO;
+import br.com.lanchonete.rest.presenters.OrderPresenter;
+import br.com.lanchonete.rest.presenters.output.MyOrderOutputDTO;
+import br.com.lanchonete.rest.presenters.output.OrderOutputDTO;
+import br.com.lanchonete.rest.presenters.output.StatusPaymentMyOrder;
 import br.com.lanchonete.usecase.order.*;
 import io.micrometer.core.annotation.Counted;
 import io.micrometer.core.annotation.Timed;
@@ -15,16 +18,15 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Type;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
 
-import static br.com.lanchonete.rest.OrderController.BASE_PATH;
+import static br.com.lanchonete.rest.controllers.OrderController.BASE_PATH;
 
 @Tag(name = "Endpoint Orders")
 @RestController
@@ -33,7 +35,9 @@ public class OrderController {
 
     public static final String BASE_PATH = "/v1/orders";
     @Autowired
-    private ModelMapper modelMapper;
+    private OrderGateway orderGateway;
+    @Autowired
+    private OrderPresenter orderPresenter;
     @Autowired
     private LogRepository logRepository;
     @Autowired
@@ -56,29 +60,8 @@ public class OrderController {
     @PostMapping
     public OrderOutputDTO checkoutOrder(@RequestBody @Valid OrderInputDTO orderInputDTO) throws APIException {
         try {
-            Order order = modelMapper.map(orderInputDTO, Order.class);
-
-            if (Objects.nonNull(orderInputDTO.getClientID())) {
-                Client client = new Client();
-                client.setId(orderInputDTO.getClientID());
-                order.setClient(client);
-            }
-
-            BillingForm billingForm = new BillingForm();
-            billingForm.setBillingFormType(orderInputDTO.getBilling().getBillingFormType());
-            order.getBilling().setBillingForm(billingForm);
-            order.setOrderItems(new ArrayList<>());
-            orderInputDTO.getOrderItems().forEach(OrderItemInputDTO -> {
-                OrderItem orderItem = new OrderItem();
-                orderItem.setObservation(OrderItemInputDTO.getObservation());
-                orderItem.setQuantity(OrderItemInputDTO.getQuantity());
-                Product product = new Product();
-                product.setId(OrderItemInputDTO.getProductID());
-                orderItem.setProduct(product);
-                order.getOrderItems().add(orderItem);
-            });
-
-            return modelMapper.map(checkoutOrderUsecase.checkout(order), OrderOutputDTO.class);
+            Order order = orderGateway.mapOrderFromOrderInputDTO(orderInputDTO);
+            return orderPresenter.mapOrderOutputDTOFromOrder(checkoutOrderUsecase.checkout(order));
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
@@ -91,9 +74,7 @@ public class OrderController {
     @GetMapping(value = "/status-type/{statusType}")
     public List<OrderOutputDTO> findAllOrdersByStatus(@PathVariable StatusType statusType) throws APIException {
         try {
-            List<Order> orders = findAllOrdersByStatusUsecase.findAll(statusType);
-            Type type = new TypeToken<List<OrderOutputDTO>>() {}.getType();
-            return modelMapper.map(orders, type);
+            return orderPresenter.mapListOrderOutputDTOFromListOrder(findAllOrdersByStatusUsecase.findAll(statusType));
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
@@ -106,10 +87,7 @@ public class OrderController {
     @GetMapping(value = "/{id}")
     public MyOrderOutputDTO findMyOrder(@PathVariable UUID id) throws APIException {
         try {
-            Order order = findMyOrderUsecase.findMyOrder(id);
-            MyOrderOutputDTO myOrderOutputDTO = modelMapper.map(order, MyOrderOutputDTO.class);
-            myOrderOutputDTO.getBilling().setBillingFormType(order.getBilling().getBillingForm().getBillingFormType());
-            return myOrderOutputDTO;
+            return orderPresenter.mapMyOrderOutputDTOFromOrder(findMyOrderUsecase.findMyOrder(id));
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
@@ -122,7 +100,7 @@ public class OrderController {
     @GetMapping(value = "/{id}/status-payment")
     public StatusPaymentMyOrder findStatusPaymentMyOrder(@PathVariable UUID id) throws APIException {
         try {
-            return new StatusPaymentMyOrder(findStatusPaymentMyOrderUsecase.findStatusPaymentMyOrder(id));
+            return orderPresenter.mapStatusPaymentMyOrderFromStatusPaymentType(findStatusPaymentMyOrderUsecase.findStatusPaymentMyOrder(id));
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
@@ -148,9 +126,7 @@ public class OrderController {
     @GetMapping(value = "/monitor")
     public List<MyOrderOutputDTO> listOrders() throws APIException {
         try {
-            List<Order> orders = listOrdersMonitorUsecase.listOrdersMonitor();
-            Type type = new TypeToken<List<MyOrderOutputDTO>>() {}.getType();
-            return modelMapper.map(orders, type);
+            return orderPresenter.mapListMyOrderOutputDTOFromListOrder(listOrdersMonitorUsecase.listOrdersMonitor());
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
