@@ -1,12 +1,13 @@
-package br.com.lanchonete.rest;
+package br.com.lanchonete.rest.controllers;
 
-import br.com.lanchonete.model.Category;
 import br.com.lanchonete.model.Product;
 import br.com.lanchonete.port.repository.LogRepository;
 import br.com.lanchonete.rest.exception.APIException;
-import br.com.lanchonete.rest.input.ProductInputDTO;
-import br.com.lanchonete.rest.input.ProductPatchInputDTO;
-import br.com.lanchonete.rest.output.ProductOutputDTO;
+import br.com.lanchonete.rest.gateways.ProductGateway;
+import br.com.lanchonete.rest.gateways.input.ProductInputDTO;
+import br.com.lanchonete.rest.gateways.input.ProductPatchInputDTO;
+import br.com.lanchonete.rest.presenters.ProductPresenter;
+import br.com.lanchonete.rest.presenters.output.ProductOutputDTO;
 import br.com.lanchonete.usecase.product.*;
 import io.micrometer.core.annotation.Counted;
 import io.micrometer.core.annotation.Timed;
@@ -15,19 +16,16 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-import static br.com.lanchonete.rest.ProductController.BASE_PATH;
+import static br.com.lanchonete.rest.controllers.ProductController.BASE_PATH;
 
 @Tag(name = "Endpoint Products")
 @Validated
@@ -37,7 +35,9 @@ public class ProductController {
 
     public static final String BASE_PATH = "/v1/products";
     @Autowired
-    private ModelMapper modelMapper;
+    private ProductGateway productGateway;
+    @Autowired
+    private ProductPresenter productPresenter;
     @Autowired
     private LogRepository logRepository;
     @Autowired
@@ -58,12 +58,8 @@ public class ProductController {
     @PostMapping
     public ProductOutputDTO saveProduct(@RequestBody @Valid ProductInputDTO productInputDTO) throws APIException {
         try {
-            Category category = new Category();
-            category.setName(productInputDTO.getCategoryName());
-            Product product = modelMapper.map(productInputDTO, Product.class);
-            product.setCategory(category);
-
-            return modelMapper.map(saveProductUsecase.save(product), ProductOutputDTO.class);
+            Product product = productGateway.mapProductFromProductInputDTO(productInputDTO);
+            return productPresenter.mapProductOutputDTOFromOrder(saveProductUsecase.save(product));
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
@@ -78,13 +74,7 @@ public class ProductController {
             @PathVariable UUID id,
             @RequestBody @Valid ProductInputDTO productInputDTO) throws APIException {
         try {
-            Category newCategory = new Category();
-            newCategory.setName(productInputDTO.getCategoryName());
-            Product product = modelMapper.map(productInputDTO, Product.class);
-            product.setCategory(newCategory);
-            product.setId(id);
-
-            updateProductUsecase.update(product);
+            updateProductUsecase.update(productGateway.mapProductFromProductInputDTO(productInputDTO, id));
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
@@ -112,13 +102,7 @@ public class ProductController {
             @PathVariable UUID id,
             @RequestBody ProductPatchInputDTO productPatchInputDTO) throws APIException {
         try {
-            Category newCategory = new Category();
-            newCategory.setName(productPatchInputDTO.getCategoryName());
-            Product product = modelMapper.map(productPatchInputDTO, Product.class);
-            product.setCategory(newCategory);
-            product.setId(id);
-
-            updateProductFieldsUsecase.update(product);
+            updateProductFieldsUsecase.update(productGateway.mapProductFromProductPatchInputDTO(productPatchInputDTO, id));
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
@@ -131,9 +115,7 @@ public class ProductController {
     @GetMapping(value = "/category-id/{categoryID}")
     public List<ProductOutputDTO> getProductsByCategoryID(@PathVariable UUID categoryID) throws APIException {
         try {
-            List<Product> products = findProductsByCategoryIDUsecase.findByCategoryID(categoryID);
-            Type type = new TypeToken<List<ProductOutputDTO>>() {}.getType();
-            return modelMapper.map(products, type);
+            return productPresenter.mapListProductOutputDTOFromListProduct(findProductsByCategoryIDUsecase.findByCategoryID(categoryID));
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }

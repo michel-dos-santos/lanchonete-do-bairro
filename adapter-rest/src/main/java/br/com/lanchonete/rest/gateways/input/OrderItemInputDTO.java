@@ -1,4 +1,4 @@
-package br.com.lanchonete.rest.input;
+package br.com.lanchonete.rest.gateways.input;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;

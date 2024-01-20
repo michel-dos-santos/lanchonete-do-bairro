@@ -1,4 +1,4 @@
-package br.com.lanchonete.rest.input;
+package br.com.lanchonete.rest.gateways.input;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

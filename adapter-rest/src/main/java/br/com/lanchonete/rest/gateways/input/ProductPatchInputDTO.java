@@ -1,4 +1,4 @@
-package br.com.lanchonete.rest.input;
+package br.com.lanchonete.rest.gateways.input;
 
 import br.com.lanchonete.model.StatusActiveType;
 import lombok.Data;

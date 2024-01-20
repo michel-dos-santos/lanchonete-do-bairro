@@ -1,4 +1,4 @@
-package br.com.lanchonete.rest.input;
+package br.com.lanchonete.rest.gateways.input;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;

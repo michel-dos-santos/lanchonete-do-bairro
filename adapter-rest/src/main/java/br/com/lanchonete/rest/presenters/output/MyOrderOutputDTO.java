@@ -1,4 +1,4 @@
-package br.com.lanchonete.rest.output;
+package br.com.lanchonete.rest.presenters.output;
 
 import br.com.lanchonete.model.StatusType;
 import lombok.Data;
