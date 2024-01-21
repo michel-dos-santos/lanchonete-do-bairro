@@ -1,10 +1,10 @@
-package br.com.lanchonete.rest.presenters;
+package br.com.lanchonete.rest.mappers.outputs;
 
 import br.com.lanchonete.model.Order;
 import br.com.lanchonete.model.StatusPaymentType;
-import br.com.lanchonete.rest.presenters.output.MyOrderOutputDTO;
-import br.com.lanchonete.rest.presenters.output.OrderOutputDTO;
-import br.com.lanchonete.rest.presenters.output.StatusPaymentMyOrder;
+import br.com.lanchonete.rest.mappers.outputs.dtos.MyOrderOutputDTO;
+import br.com.lanchonete.rest.mappers.outputs.dtos.OrderOutputDTO;
+import br.com.lanchonete.rest.mappers.outputs.dtos.StatusPaymentMyOrder;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class OrderPresenter {
+public class OrderOutputMapper {
 
     @Autowired
     private ModelMapper modelMapper;

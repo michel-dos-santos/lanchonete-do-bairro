@@ -1,9 +1,9 @@
-package br.com.lanchonete.rest.gateways;
+package br.com.lanchonete.rest.mappers.inputs;
 
 import br.com.lanchonete.model.Category;
 import br.com.lanchonete.model.Product;
-import br.com.lanchonete.rest.gateways.input.ProductInputDTO;
-import br.com.lanchonete.rest.gateways.input.ProductPatchInputDTO;
+import br.com.lanchonete.rest.mappers.inputs.dtos.ProductInputDTO;
+import br.com.lanchonete.rest.mappers.inputs.dtos.ProductPatchInputDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
-public class ProductGateway {
+public class ProductInputMapper {
 
     @Autowired
     private ModelMapper modelMapper;

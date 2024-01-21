@@ -3,11 +3,11 @@ package br.com.lanchonete.rest.controllers;
 import br.com.lanchonete.model.Product;
 import br.com.lanchonete.port.repository.LogRepository;
 import br.com.lanchonete.rest.exception.APIException;
-import br.com.lanchonete.rest.gateways.ProductGateway;
-import br.com.lanchonete.rest.gateways.input.ProductInputDTO;
-import br.com.lanchonete.rest.gateways.input.ProductPatchInputDTO;
-import br.com.lanchonete.rest.presenters.ProductPresenter;
-import br.com.lanchonete.rest.presenters.output.ProductOutputDTO;
+import br.com.lanchonete.rest.mappers.inputs.ProductInputMapper;
+import br.com.lanchonete.rest.mappers.inputs.dtos.ProductInputDTO;
+import br.com.lanchonete.rest.mappers.inputs.dtos.ProductPatchInputDTO;
+import br.com.lanchonete.rest.mappers.outputs.ProductOutputMapper;
+import br.com.lanchonete.rest.mappers.outputs.dtos.ProductOutputDTO;
 import br.com.lanchonete.usecase.product.*;
 import io.micrometer.core.annotation.Counted;
 import io.micrometer.core.annotation.Timed;
@@ -35,9 +35,9 @@ public class ProductController {
 
     public static final String BASE_PATH = "/v1/products";
     @Autowired
-    private ProductGateway productGateway;
+    private ProductInputMapper productInputMapper;
     @Autowired
-    private ProductPresenter productPresenter;
+    private ProductOutputMapper productOutputMapper;
     @Autowired
     private LogRepository logRepository;
     @Autowired
@@ -58,8 +58,8 @@ public class ProductController {
     @PostMapping
     public ProductOutputDTO saveProduct(@RequestBody @Valid ProductInputDTO productInputDTO) throws APIException {
         try {
-            Product product = productGateway.mapProductFromProductInputDTO(productInputDTO);
-            return productPresenter.mapProductOutputDTOFromOrder(saveProductUsecase.save(product));
+            Product product = productInputMapper.mapProductFromProductInputDTO(productInputDTO);
+            return productOutputMapper.mapProductOutputDTOFromOrder(saveProductUsecase.save(product));
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
@@ -74,7 +74,7 @@ public class ProductController {
             @PathVariable UUID id,
             @RequestBody @Valid ProductInputDTO productInputDTO) throws APIException {
         try {
-            updateProductUsecase.update(productGateway.mapProductFromProductInputDTO(productInputDTO, id));
+            updateProductUsecase.update(productInputMapper.mapProductFromProductInputDTO(productInputDTO, id));
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
@@ -102,7 +102,7 @@ public class ProductController {
             @PathVariable UUID id,
             @RequestBody ProductPatchInputDTO productPatchInputDTO) throws APIException {
         try {
-            updateProductFieldsUsecase.update(productGateway.mapProductFromProductPatchInputDTO(productPatchInputDTO, id));
+            updateProductFieldsUsecase.update(productInputMapper.mapProductFromProductPatchInputDTO(productPatchInputDTO, id));
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
@@ -115,7 +115,7 @@ public class ProductController {
     @GetMapping(value = "/category-id/{categoryID}")
     public List<ProductOutputDTO> getProductsByCategoryID(@PathVariable UUID categoryID) throws APIException {
         try {
-            return productPresenter.mapListProductOutputDTOFromListProduct(findProductsByCategoryIDUsecase.findByCategoryID(categoryID));
+            return productOutputMapper.mapListProductOutputDTOFromListProduct(findProductsByCategoryIDUsecase.findByCategoryID(categoryID));
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }

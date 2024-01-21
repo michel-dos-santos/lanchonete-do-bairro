@@ -1,4 +1,4 @@
-package br.com.lanchonete.rest.presenters.output;
+package br.com.lanchonete.rest.mappers.outputs.dtos;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,11 +7,10 @@ import java.util.UUID;
 
 @Data
 @NoArgsConstructor
-public class ClientOutputDTO {
+public class CategoryOutputDTO {
 
     private UUID id;
     private String name;
-    private String cpf;
-    private String email;
+    private String description;
 
 }

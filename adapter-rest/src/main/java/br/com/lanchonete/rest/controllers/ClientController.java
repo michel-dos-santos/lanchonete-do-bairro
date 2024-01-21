@@ -3,10 +3,10 @@ package br.com.lanchonete.rest.controllers;
 import br.com.lanchonete.model.Client;
 import br.com.lanchonete.port.repository.LogRepository;
 import br.com.lanchonete.rest.exception.APIException;
-import br.com.lanchonete.rest.gateways.ClientGateway;
-import br.com.lanchonete.rest.gateways.input.ClientInputDTO;
-import br.com.lanchonete.rest.presenters.ClientPresenter;
-import br.com.lanchonete.rest.presenters.output.ClientOutputDTO;
+import br.com.lanchonete.rest.mappers.inputs.ClientInputMapper;
+import br.com.lanchonete.rest.mappers.inputs.dtos.ClientInputDTO;
+import br.com.lanchonete.rest.mappers.outputs.ClientOutputMapper;
+import br.com.lanchonete.rest.mappers.outputs.dtos.ClientOutputDTO;
 import br.com.lanchonete.usecase.client.IdentifierClientUsecase;
 import br.com.lanchonete.usecase.client.SaveClientUsecase;
 import io.micrometer.core.annotation.Counted;
@@ -34,9 +34,9 @@ public class ClientController {
 
     public static final String BASE_PATH = "/v1/clients";
     @Autowired
-    private ClientGateway clientGateway;
+    private ClientInputMapper clientInputMapper;
     @Autowired
-    private ClientPresenter clientPresenter;
+    private ClientOutputMapper clientOutputMapper;
     @Autowired
     private LogRepository logRepository;
     @Autowired
@@ -51,8 +51,8 @@ public class ClientController {
     @PostMapping
     public ClientOutputDTO saveClient(@RequestBody @Valid ClientInputDTO clientInputDTO) throws APIException {
         try {
-            Client client = clientGateway.mapClientFromClientInputDTO(clientInputDTO);
-            return clientPresenter.mapClientOutputDTOFromClient(saveClientUsecase.save(client));
+            Client client = clientInputMapper.mapClientFromClientInputDTO(clientInputDTO);
+            return clientOutputMapper.mapClientOutputDTOFromClient(saveClientUsecase.save(client));
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
@@ -66,7 +66,7 @@ public class ClientController {
     public ClientOutputDTO identifierClient(@PathVariable @NotBlank(message = "CPF não pode ser vazio ou nulo") String cpf) throws APIException {
         try {
             Client client = identifierClientUsecase.identifierByCPF(cpf);
-            return clientPresenter.mapClientOutputDTOFromClient(client);
+            return clientOutputMapper.mapClientOutputDTOFromClient(client);
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
