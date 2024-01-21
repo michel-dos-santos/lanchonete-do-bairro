@@ -1,13 +1,13 @@
-package br.com.lanchonete.rest.gateways;
+package br.com.lanchonete.rest.mappers.inputs;
 
 import br.com.lanchonete.model.Client;
-import br.com.lanchonete.rest.gateways.input.ClientInputDTO;
+import br.com.lanchonete.rest.mappers.inputs.dtos.ClientInputDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ClientGateway {
+public class ClientInputMapper {
 
     @Autowired
     private ModelMapper modelMapper;

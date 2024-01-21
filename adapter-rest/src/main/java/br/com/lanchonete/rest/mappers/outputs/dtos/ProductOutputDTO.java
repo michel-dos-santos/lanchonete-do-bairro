@@ -1,4 +1,4 @@
-package br.com.lanchonete.rest.presenters.output;
+package br.com.lanchonete.rest.mappers.outputs.dtos;
 
 import br.com.lanchonete.model.StatusActiveType;
 import lombok.Data;

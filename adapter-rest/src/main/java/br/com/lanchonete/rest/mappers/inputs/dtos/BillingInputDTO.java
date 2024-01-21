@@ -1,4 +1,4 @@
-package br.com.lanchonete.rest.gateways.input;
+package br.com.lanchonete.rest.mappers.inputs.dtos;
 
 import br.com.lanchonete.model.BillingFormType;
 import jakarta.validation.constraints.DecimalMin;

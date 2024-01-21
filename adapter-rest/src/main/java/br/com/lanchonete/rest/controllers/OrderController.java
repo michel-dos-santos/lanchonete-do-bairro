@@ -4,12 +4,12 @@ import br.com.lanchonete.model.Order;
 import br.com.lanchonete.model.StatusType;
 import br.com.lanchonete.port.repository.LogRepository;
 import br.com.lanchonete.rest.exception.APIException;
-import br.com.lanchonete.rest.gateways.OrderGateway;
-import br.com.lanchonete.rest.gateways.input.OrderInputDTO;
-import br.com.lanchonete.rest.presenters.OrderPresenter;
-import br.com.lanchonete.rest.presenters.output.MyOrderOutputDTO;
-import br.com.lanchonete.rest.presenters.output.OrderOutputDTO;
-import br.com.lanchonete.rest.presenters.output.StatusPaymentMyOrder;
+import br.com.lanchonete.rest.mappers.inputs.OrderInputMapper;
+import br.com.lanchonete.rest.mappers.inputs.dtos.OrderInputDTO;
+import br.com.lanchonete.rest.mappers.outputs.OrderOutputMapper;
+import br.com.lanchonete.rest.mappers.outputs.dtos.MyOrderOutputDTO;
+import br.com.lanchonete.rest.mappers.outputs.dtos.OrderOutputDTO;
+import br.com.lanchonete.rest.mappers.outputs.dtos.StatusPaymentMyOrder;
 import br.com.lanchonete.usecase.order.*;
 import io.micrometer.core.annotation.Counted;
 import io.micrometer.core.annotation.Timed;
@@ -35,9 +35,9 @@ public class OrderController {
 
     public static final String BASE_PATH = "/v1/orders";
     @Autowired
-    private OrderGateway orderGateway;
+    private OrderInputMapper orderInputMapper;
     @Autowired
-    private OrderPresenter orderPresenter;
+    private OrderOutputMapper orderOutputMapper;
     @Autowired
     private LogRepository logRepository;
     @Autowired
@@ -60,8 +60,8 @@ public class OrderController {
     @PostMapping
     public OrderOutputDTO checkoutOrder(@RequestBody @Valid OrderInputDTO orderInputDTO) throws APIException {
         try {
-            Order order = orderGateway.mapOrderFromOrderInputDTO(orderInputDTO);
-            return orderPresenter.mapOrderOutputDTOFromOrder(checkoutOrderUsecase.checkout(order));
+            Order order = orderInputMapper.mapOrderFromOrderInputDTO(orderInputDTO);
+            return orderOutputMapper.mapOrderOutputDTOFromOrder(checkoutOrderUsecase.checkout(order));
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
@@ -74,7 +74,7 @@ public class OrderController {
     @GetMapping(value = "/status-type/{statusType}")
     public List<OrderOutputDTO> findAllOrdersByStatus(@PathVariable StatusType statusType) throws APIException {
         try {
-            return orderPresenter.mapListOrderOutputDTOFromListOrder(findAllOrdersByStatusUsecase.findAll(statusType));
+            return orderOutputMapper.mapListOrderOutputDTOFromListOrder(findAllOrdersByStatusUsecase.findAll(statusType));
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
@@ -87,7 +87,7 @@ public class OrderController {
     @GetMapping(value = "/{id}")
     public MyOrderOutputDTO findMyOrder(@PathVariable UUID id) throws APIException {
         try {
-            return orderPresenter.mapMyOrderOutputDTOFromOrder(findMyOrderUsecase.findMyOrder(id));
+            return orderOutputMapper.mapMyOrderOutputDTOFromOrder(findMyOrderUsecase.findMyOrder(id));
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
@@ -100,7 +100,7 @@ public class OrderController {
     @GetMapping(value = "/{id}/status-payment")
     public StatusPaymentMyOrder findStatusPaymentMyOrder(@PathVariable UUID id) throws APIException {
         try {
-            return orderPresenter.mapStatusPaymentMyOrderFromStatusPaymentType(findStatusPaymentMyOrderUsecase.findStatusPaymentMyOrder(id));
+            return orderOutputMapper.mapStatusPaymentMyOrderFromStatusPaymentType(findStatusPaymentMyOrderUsecase.findStatusPaymentMyOrder(id));
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
@@ -126,7 +126,7 @@ public class OrderController {
     @GetMapping(value = "/monitor")
     public List<MyOrderOutputDTO> listOrders() throws APIException {
         try {
-            return orderPresenter.mapListMyOrderOutputDTOFromListOrder(listOrdersMonitorUsecase.listOrdersMonitor());
+            return orderOutputMapper.mapListMyOrderOutputDTOFromListOrder(listOrdersMonitorUsecase.listOrdersMonitor());
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }

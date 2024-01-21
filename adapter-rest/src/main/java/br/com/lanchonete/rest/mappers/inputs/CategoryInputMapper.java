@@ -1,13 +1,13 @@
-package br.com.lanchonete.rest.gateways;
+package br.com.lanchonete.rest.mappers.inputs;
 
 import br.com.lanchonete.model.Category;
-import br.com.lanchonete.rest.gateways.input.CategoryInputDTO;
+import br.com.lanchonete.rest.mappers.inputs.dtos.CategoryInputDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CategoryGateway {
+public class CategoryInputMapper {
 
     @Autowired
     private ModelMapper modelMapper;

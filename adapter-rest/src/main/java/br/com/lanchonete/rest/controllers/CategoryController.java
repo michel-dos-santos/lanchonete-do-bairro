@@ -3,10 +3,10 @@ package br.com.lanchonete.rest.controllers;
 import br.com.lanchonete.model.Category;
 import br.com.lanchonete.port.repository.LogRepository;
 import br.com.lanchonete.rest.exception.APIException;
-import br.com.lanchonete.rest.gateways.CategoryGateway;
-import br.com.lanchonete.rest.gateways.input.CategoryInputDTO;
-import br.com.lanchonete.rest.presenters.CategoryPresenter;
-import br.com.lanchonete.rest.presenters.output.CategoryOutputDTO;
+import br.com.lanchonete.rest.mappers.inputs.CategoryInputMapper;
+import br.com.lanchonete.rest.mappers.inputs.dtos.CategoryInputDTO;
+import br.com.lanchonete.rest.mappers.outputs.CategoryOutputMapper;
+import br.com.lanchonete.rest.mappers.outputs.dtos.CategoryOutputDTO;
 import br.com.lanchonete.usecase.category.FindAllCategoryUsecase;
 import br.com.lanchonete.usecase.category.SaveCategoryUsecase;
 import io.micrometer.core.annotation.Counted;
@@ -34,9 +34,9 @@ public class CategoryController {
 
     public static final String BASE_PATH = "/v1/categories";
     @Autowired
-    private CategoryGateway categoryGateway;
+    private CategoryInputMapper categoryInputMapper;
     @Autowired
-    private CategoryPresenter categoryPresenter;
+    private CategoryOutputMapper categoryOutputMapper;
     @Autowired
     private LogRepository logRepository;
     @Autowired
@@ -51,8 +51,8 @@ public class CategoryController {
     @PostMapping
     public CategoryOutputDTO saveCategory(@RequestBody @Valid CategoryInputDTO categoryInputDTO) throws APIException {
         try {
-            Category category = categoryGateway.mapCategoryFromCategoryInputDTO(categoryInputDTO);
-            return categoryPresenter.mapCategoryOutputDTOFromCategory(saveCategoryUsecase.save(category));
+            Category category = categoryInputMapper.mapCategoryFromCategoryInputDTO(categoryInputDTO);
+            return categoryOutputMapper.mapCategoryOutputDTOFromCategory(saveCategoryUsecase.save(category));
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }
@@ -65,7 +65,7 @@ public class CategoryController {
     @GetMapping
     public List<CategoryOutputDTO> findAllCategories() throws APIException {
         try {
-            return categoryPresenter.mapListCategoryOutputDTOFromListCategory(findAllCategoryUsecase.findAll());
+            return categoryOutputMapper.mapListCategoryOutputDTOFromListCategory(findAllCategoryUsecase.findAll());
         } catch (Exception e) {
             throw APIException.internalError("Erro interno", Collections.singletonList(e.getMessage()));
         }

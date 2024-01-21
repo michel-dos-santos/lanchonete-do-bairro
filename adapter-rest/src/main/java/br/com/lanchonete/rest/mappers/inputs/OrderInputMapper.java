@@ -1,7 +1,7 @@
-package br.com.lanchonete.rest.gateways;
+package br.com.lanchonete.rest.mappers.inputs;
 
 import br.com.lanchonete.model.*;
-import br.com.lanchonete.rest.gateways.input.OrderInputDTO;
+import br.com.lanchonete.rest.mappers.inputs.dtos.OrderInputDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 @Component
-public class OrderGateway {
+public class OrderInputMapper {
 
     @Autowired
     private ModelMapper modelMapper;
