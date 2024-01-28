@@ -5,6 +5,22 @@ networks:
     driver: bridge
 
 services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    restart: always
+    container_name: n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - NODE_ENV=production
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
+    networks:
+      - commons-app
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data/n8n:/home/node/.n8n
   postgres-db:
     image: postgres
     restart: always
@@ -14,24 +30,46 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./data/postgres:/var/lib/postgresql/data
     networks:
       - commons-app
-  rest-api:
+  adapter-rest:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: adapter-rest/Dockerfile
     restart: always
-    container_name: rest-api
+    container_name: adapter-rest
     environment:
       - PROFILE=local
       - DB_URL=jdbc:postgresql://postgres-db:5432/postgres?currentSchema=public
       - DB_USER=postgres
       - DB_PASSWORD=postgres
+      - MERCADO_PAGO_URL=http://n8n:5678/webhook/mercadopago/billing
+      - ITAU_URL=http://n8n:5678/webhook/itau/billing
     ports:
       - "8081:8081"
     networks:
       - commons-app
     depends_on:
       - postgres-db
+  adapter-consumer-billing:
+    build:
+      context: .
+      dockerfile: adapter-consumer-billing/Dockerfile
+    restart: always
+    container_name: adapter-consumer-billing
+    environment:
+      - PROFILE=local
+      - DB_URL=jdbc:postgresql://postgres-db:5432/postgres?currentSchema=public
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+    ports:
+      - "8082:8082"
+    networks:
+      - commons-app
+    depends_on:
+      - postgres-db
+
+volumes:
+  data:
+    external: true

@@ -7,5 +7,4 @@ import java.util.UUID;
 
 public interface SpringDataPostgresBillingRepository extends JpaRepository<BillingEntity, UUID> {
 
-
 }

@@ -29,8 +29,9 @@ public class CheckoutOrderUsecase implements CheckoutOrder {
         order.setStatus(StatusType.RECEIVED);
         validateCheckoutOrder.validate(order);
         order.setBilling(generateBilling.generate(order.getBilling()));
-
         Order orderCheckout = orderRepository.checkout(order);
+
+        orderRepository.updateStatus(orderCheckout.getId(), StatusType.IN_BILLING);
         logRepository.info(CheckoutOrderUsecase.class, LogCode.LogCodeInfo._0023);
         return orderCheckout;
     }

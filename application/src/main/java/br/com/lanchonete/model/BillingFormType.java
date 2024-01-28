@@ -3,7 +3,8 @@ package br.com.lanchonete.model;
 import java.util.Arrays;
 
 public enum BillingFormType {
-    QRCODE_MERCADO_PAGO("QRCode Mercado Pago");
+    QRCODE_MERCADO_PAGO("QRCode Mercado Pago"),
+    PIX_ITAU("PIX Itaú");
 
     private String description;
 

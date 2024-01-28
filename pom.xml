@@ -13,7 +13,7 @@
     <groupId>br.com.lanchonete</groupId>
     <artifactId>lanchonete-do-bairro</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <name>lanchonete-do-bairro</name>
     <description>Projeto destinado a lanchonete do bairro</description>
 
@@ -23,6 +23,8 @@
         <module>adapter-rest</module>
         <module>adapter-log</module>
         <module>adapter-db</module>
+        <module>adapter-producer-billing</module>
+        <module>adapter-consumer-billing</module>
     </modules>
 
     <properties>
