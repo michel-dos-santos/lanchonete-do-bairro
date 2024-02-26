@@ -25,6 +25,7 @@ public class SaveClientUsecase implements SaveClient {
         validateClient.validate(client);
         Client clientSaved = clientRepository.save(client);
         logRepository.info(SaveClientUsecase.class, LogCode.LogCodeInfo._0003);
+
         return clientSaved;
     }
 }

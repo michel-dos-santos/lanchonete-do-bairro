@@ -13,7 +13,12 @@ public class ClientOutputMapper {
     private ModelMapper modelMapper;
 
     public ClientOutputDTO mapClientOutputDTOFromClient(Client client) {
-        return modelMapper.map(client, ClientOutputDTO.class);
+        return mapClientOutputDTOFromClient(client, null);
     }
 
+    public ClientOutputDTO mapClientOutputDTOFromClient(Client client, String token) {
+        ClientOutputDTO clientOutputDTO = modelMapper.map(client, ClientOutputDTO.class);
+        clientOutputDTO.setToken(token);
+        return clientOutputDTO;
+    }
 }

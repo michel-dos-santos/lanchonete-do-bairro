@@ -46,6 +46,11 @@ services:
       - DB_PASSWORD=postgres
       - MERCADO_PAGO_URL=http://n8n:5678/webhook/mercadopago/billing
       - ITAU_URL=http://n8n:5678/webhook/itau/billing
+      - AWS_ACCESS_KEY=AKIAZPMY6EZ4ESINASEZ
+      - AWS_ACCESS_SECRET=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
+      - AWS_REGION=us-east-1
+      - AWS_COGNITO_CLIENT_ID=4jltakeq54iro2ba8u8e2qok9l
+      - AWS_COGNITO_USER_POOL_ID=us-east-1_vRU0MXHKB
     ports:
       - "8081:8081"
     networks:
