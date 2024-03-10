@@ -10,25 +10,33 @@ jobs:
   unit-tests:
     uses: ./.github/workflows/unit-tests.yml
   code-analisys:
+    needs: unit-tests
     uses: ./.github/workflows/code-analisys.yml
   build:
+    needs: code-analisys
     uses: ./.github/workflows/build.yml
   publish-docker-feature:
+    needs: build
     if: ${{ contains(github.ref, 'feature') }}
     uses: ./.github/workflows/publish-docker-feature.yml
   publish-docker-develop:
+    needs: build
     if: ${{ contains(github.ref, 'develop') }}
     uses: ./.github/workflows/publish-docker-develop.yml
   publish-docker-hotfix:
+    needs: build
     if: ${{ contains(github.ref, 'hotfix') }}
     uses: ./.github/workflows/publish-docker-hotfix.yml
   publish-docker-release:
+    needs: build
     if: ${{ contains(github.ref, 'release') }}
     uses: ./.github/workflows/publish-docker-release.yml
   publish-docker-master:
+    needs: build
     if: ${{ contains(github.ref, 'master') }}
     uses: ./.github/workflows/publish-docker-master.yml
   deploy:
+    needs: [publish-docker-feature, publish-docker-develop, publish-docker-hotfix, publish-docker-release, publish-docker-master]
     uses: ./.github/workflows/deploy.yml
 
 
