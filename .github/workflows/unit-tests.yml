@@ -9,4 +9,4 @@ jobs:
     environment: DEV
     steps:
       - uses: actions/checkout@v3
-      - run: mvn test
+      - run: mvn clean test
