@@ -37,6 +37,7 @@ jobs:
     uses: ./.github/workflows/publish-docker-master.yml
   deploy:
     needs: [publish-docker-feature, publish-docker-develop, publish-docker-hotfix, publish-docker-release, publish-docker-master]
+    if: ${{ always() && contains(needs.*.result, 'success') && !contains(needs.*.result, 'failure') }}
     uses: ./.github/workflows/deploy.yml
 
 
