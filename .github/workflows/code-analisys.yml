@@ -9,3 +9,11 @@ jobs:
     environment: DEV
     steps:
       - uses: actions/checkout@v3
+      - name: Analyze with SonarCloud
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on Sonarcloud.io, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
+        with:
+          args:
+            -Dsonar.projectKey=michel-dos-santos_lanchonete-do-bairro-postech-fiap
+            -Dsonar.organization=michel-dos-santos
