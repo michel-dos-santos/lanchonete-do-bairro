@@ -1,0 +1,11 @@
+name: Publish Docker Hotfix
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: DEV
+    steps:
+      - uses: actions/checkout@v3

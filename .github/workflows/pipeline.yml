@@ -7,8 +7,32 @@ on:
     branches: [ "master", "develop" ]
 
 jobs:
-
+  unit-tests:
+    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/unit-tests.yml@v1
+  code-analisys:
+    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/code-analisys.yml@v1
   build:
+    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/build.yml@v1
+  publish-docker-feature:
+    if: ${{ contains(github.ref, 'feature') }}
+    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/publish-docker-feature.yml@v1
+  publish-docker-develop:
+    if: ${{ contains(github.ref, 'develop') }}
+    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/publish-docker-develop.yml@v1
+  publish-docker-hotfix:
+    if: ${{ contains(github.ref, 'hotfix') }}
+    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/publish-docker-hotfix.yml@v1
+  publish-docker-release:
+    if: ${{ contains(github.ref, 'release') }}
+    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/publish-docker-release.yml@v1
+  publish-docker-master:
+    if: ${{ contains(github.ref, 'master') }}
+    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/publish-docker-master.yml@v1
+  deploy:
+    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/deploy.yml@v1
+
+
+  build-old:
     runs-on: ubuntu-latest
     environment: DEV
     steps:
