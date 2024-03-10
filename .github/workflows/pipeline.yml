@@ -8,28 +8,28 @@ on:
 
 jobs:
   unit-tests:
-    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/unit-tests.yml@v1
+    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/unit-tests.yml
   code-analisys:
-    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/code-analisys.yml@v1
+    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/code-analisys.yml
   build:
-    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/build.yml@v1
+    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/build.yml
   publish-docker-feature:
     if: ${{ contains(github.ref, 'feature') }}
-    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/publish-docker-feature.yml@v1
+    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/publish-docker-feature.yml
   publish-docker-develop:
     if: ${{ contains(github.ref, 'develop') }}
-    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/publish-docker-develop.yml@v1
+    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/publish-docker-develop.yml
   publish-docker-hotfix:
     if: ${{ contains(github.ref, 'hotfix') }}
-    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/publish-docker-hotfix.yml@v1
+    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/publish-docker-hotfix.yml
   publish-docker-release:
     if: ${{ contains(github.ref, 'release') }}
-    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/publish-docker-release.yml@v1
+    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/publish-docker-release.yml
   publish-docker-master:
     if: ${{ contains(github.ref, 'master') }}
-    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/publish-docker-master.yml@v1
+    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/publish-docker-master.yml
   deploy:
-    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/deploy.yml@v1
+    uses: michel-dos-santos/lanchonete-do-bairro/.github/workflows/deploy.yml
 
 
   build-old:
