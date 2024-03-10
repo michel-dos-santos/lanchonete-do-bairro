@@ -116,7 +116,7 @@ public class ClientControllerTest extends ControllerTestBase {
     public void identifierClientException() throws Exception {
         String url = ClientController.BASE_PATH.concat("/sign-up");
         IdentifierClientInputDTO identifierClientInputDTO = new IdentifierClientInputDTO();
-        identifierClientInputDTO.setUsername("109026610");
+        identifierClientInputDTO.setUsername("10902661035");
         identifierClientInputDTO.setPassword("password");
         String token = easyRandom.nextObject(String.class);
         Client client = modelMapperAPI.map(identifierClientInputDTO, Client.class);
