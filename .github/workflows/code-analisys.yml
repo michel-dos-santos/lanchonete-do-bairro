@@ -3,13 +3,12 @@ name: Code Analisys
 on:
   workflow_call:
 
-permissions:
-  pull-requests: read
-
 jobs:
   build:
     runs-on: ubuntu-latest
     environment: DEV
+    permissions:
+      pull-requests: read
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
