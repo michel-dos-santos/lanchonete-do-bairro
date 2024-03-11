@@ -20,8 +20,8 @@ jobs:
   build:
     needs: code-analisys
     uses: ./.github/workflows/build.yml
-    secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    secrets: inherit
+    with:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   publish-docker-feature:
     needs: build
