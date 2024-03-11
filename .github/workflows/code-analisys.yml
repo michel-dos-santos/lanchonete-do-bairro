@@ -16,14 +16,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Maven
-        run: mvn -B package -Pcoverage
-
-      - name: Generate a coverage value
-        id: coverage
-        # Generates a GitHub Workflow output named `lines`
-        run: |
-          COVERAGE="80"
-          echo "##[set-output name=lines;]${COVERAGE}%"
+        run: mvn -B package
 
       - name: Analyze with SonarCloud
         uses: SonarSource/sonarcloud-github-action@master
