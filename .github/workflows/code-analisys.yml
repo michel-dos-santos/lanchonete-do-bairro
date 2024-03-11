@@ -38,3 +38,4 @@ jobs:
             -Dsonar.sources=src/main/java
             -Dsonar.tests=src/test/java
             -Dsonar.java.binaries=target
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
