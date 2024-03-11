@@ -8,3 +8,4 @@
 .idea
 *.iml
 *.env
+/data/n8n/
