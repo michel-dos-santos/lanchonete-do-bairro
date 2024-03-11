@@ -48,6 +48,7 @@ jobs:
 
 
   build-old:
+    if: ${{ !always() }}
     runs-on: ubuntu-latest
     environment: DEV
     steps:
