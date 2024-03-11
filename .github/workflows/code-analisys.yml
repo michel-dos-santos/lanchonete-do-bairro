@@ -9,7 +9,6 @@ jobs:
     environment: DEV
     steps:
       - uses: actions/checkout@v3
-
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -17,7 +16,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Maven
-        run: mvn -B test
+        run: mvn -B package -Pcoverage
 
       - name: Generate a coverage value
         id: coverage
@@ -25,21 +24,6 @@ jobs:
         run: |
           COVERAGE="80"
           echo "##[set-output name=lines;]${COVERAGE}%"
-
-      # Use the output from the `coverage` step
-      - name: Generate the badge SVG image
-        uses: emibcn/badge-action@v1
-        with:
-          label: 'Test coverage'
-          status: ${{ steps.coverage.outputs.lines }}
-          color: 'blue,555,daf'
-          path: badge.svg
-
-      - name: Upload JaCoCo coverage report
-        uses: actions/upload-artifact@v2
-        with:
-          name: jacoco-report
-          path: target/site/jacoco/
 
       - name: Analyze with SonarCloud
         uses: SonarSource/sonarcloud-github-action@master
