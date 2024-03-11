@@ -19,8 +19,6 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
-      # Remove 'pom.xml' otherwise Sonar will fail forcing to use Maven
-      #
       - name: Remove pom
         run: rm -f pom.xml
 
@@ -29,3 +27,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args:
+            -Dsonar.projectKey=michel-dos-santos_lanchonete-do-bairro-postech-fiap
+            -Dsonar.organization=michel-dos-santos
