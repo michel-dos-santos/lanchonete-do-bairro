@@ -22,10 +22,7 @@
         <sonar.sources>src/main/java</sonar.sources>
         <sonar.tests>src/test/java</sonar.tests>
         <sonar.java.binaries>target</sonar.java.binaries>
-        <sonar.projectKey></sonar.projectKey>
-        <sonar.login></sonar.login>
-        <sonar.host.url></sonar.host.url>
-        <sonar.exclusions></sonar.exclusions>
+        <sonar.projectKey>michel-dos-santos_lanchonete-do-bairro-postech-fiap-${project.groupId}:${project.artifactId}</sonar.projectKey>
     </properties>
 
     <dependencies>
