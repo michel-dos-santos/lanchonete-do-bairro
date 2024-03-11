@@ -3,6 +3,9 @@ name: Code Analisys
 on:
   workflow_call:
 
+permissions:
+  pull-requests: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
