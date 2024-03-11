@@ -17,12 +17,10 @@ jobs:
   code-analisys:
     needs: unit-tests
     uses: ./.github/workflows/code-analisys.yml
+    secrets: inherit
   build:
     needs: code-analisys
     uses: ./.github/workflows/build.yml
-    secrets: inherit
-    with:
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   publish-docker-feature:
     needs: build
     if: ${{ contains(github.ref, 'feature') }}
