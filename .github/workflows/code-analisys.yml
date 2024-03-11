@@ -34,3 +34,4 @@ jobs:
           args:
             -Dsonar.projectKey=michel-dos-santos_lanchonete-do-bairro-postech-fiap
             -Dsonar.organization=michel-dos-santos
+            -Dsonar.java.binaries=target
