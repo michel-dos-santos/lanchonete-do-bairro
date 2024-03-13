@@ -1,5 +1,6 @@
 # Project exclude paths
-*/target/
+**/target
+/target
 */logs/
 */n8n/
 */postgres/
@@ -8,4 +9,4 @@
 .idea
 *.iml
 *.env
-/data/n8n/
+/data/n8n/*
