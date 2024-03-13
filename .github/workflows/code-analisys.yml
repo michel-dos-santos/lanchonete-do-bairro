@@ -22,9 +22,6 @@ jobs:
       - name: Build with Maven
         run: mvn -B compile
 
-      - name: Remove pom
-        run: rm -f pom.xml
-
       - name: Analyze with SonarCloud
         run: mvn -B clean verify -Dsonar.login=${{ secrets.SONAR_TOKEN }}
         env:
