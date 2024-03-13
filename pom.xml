@@ -33,6 +33,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.token>d915589bfe86110bb4feb1429f441d711e8357ec</sonar.token>
         <sonar.projectKey>michel-dos-santos_lanchonete-do-bairro-postech-fiap</sonar.projectKey>
         <sonar.organization>michel-dos-santos</sonar.organization>
         <sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
@@ -45,6 +46,18 @@
             <version>5.0.0</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -52,6 +65,7 @@
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.10.0.2594</version>
                 <executions>
                     <execution>
                         <phase>verify</phase>
