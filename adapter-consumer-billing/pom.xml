@@ -16,13 +16,6 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-cloud.version>2022.0.4</spring-cloud.version>
-
-        <!-- Sonar -->
-        <sonar.language>java</sonar.language>
-        <sonar.sources>src/main/java</sonar.sources>
-        <sonar.tests>src/test/java</sonar.tests>
-        <sonar.java.binaries>target</sonar.java.binaries>
-        <sonar.projectKey>michel-dos-santos_lanchonete-do-bairro-postech-fiap-${project.groupId}:${project.artifactId}</sonar.projectKey>
     </properties>
 
     <dependencies>
