@@ -19,6 +19,9 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
+      - name: Remove pom
+        run: rm -f pom.xml
+
       - name: Analyze with SonarCloud
         uses: SonarSource/sonarcloud-github-action@v2.1.1
         env:
