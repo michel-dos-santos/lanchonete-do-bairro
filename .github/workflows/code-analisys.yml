@@ -20,4 +20,4 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Maven
-        run: mvn clean install -e -X sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dsonar.projectKey=michel-dos-santos_lanchonete-do-bairro-postech-fiap -Dsonar.organization=michel-dos-santos
+        run: mvn clean install -e sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dsonar.projectKey=michel-dos-santos_lanchonete-do-bairro-postech-fiap -Dsonar.organization=michel-dos-santos
