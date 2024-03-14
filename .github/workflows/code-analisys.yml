@@ -20,6 +20,11 @@ jobs:
           distribution: 'adopt'
 
       - name: Analyze with SonarCloud
-        run: mvn -B clean verify -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        uses: SonarSource/sonarcloud-github-action@v2.1.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args:
+            -Dsonar.projectKey=michel-dos-santos_lanchonete-do-bairro-postech-fiap
+            -Dsonar.organization=michel-dos-santos
