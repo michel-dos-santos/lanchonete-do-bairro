@@ -20,10 +20,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Maven
-        run: mvn -B compile
-
-      - name: Remove pom
-        run: rm -f pom.xml
+        run: mvn clean install
 
       - name: Analyze with SonarCloud
         uses: SonarSource/sonarcloud-github-action@v2.1.1
