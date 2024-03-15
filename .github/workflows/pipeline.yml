@@ -54,19 +54,19 @@ jobs:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
 
-      - name: "🖼️ Build docker image adapter-rest-fast-food:${{ steps.extract_branch.outputs.branch }}"
+      - name: "🖼️ Build docker image adapter-rest-fast-food"
         run: |
           docker build . --file adapter-rest/Dockerfile --tag ${{ secrets.DOCKER_USER }}/adapter-rest-fast-food:${{ steps.extract_branch.outputs.branch }}
 
-      - name: "🚀 docker push adapter-rest-fast-food:${{ steps.extract_branch.outputs.branch }}"
+      - name: "🚀 docker push adapter-rest-fast-food"
         run: |
           docker push ${{ secrets.DOCKER_USER }}/adapter-rest-fast-food:${{ steps.extract_branch.outputs.branch }}
 
-      - name: "🖼️ Build docker image adapter-consumer-billing-fast-food:${{ steps.extract_branch.outputs.branch }}"
+      - name: "🖼️ Build docker image adapter-consumer-billing-fast-food"
         run: |
           docker build . --file adapter-consumer-billing/Dockerfile --tag ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:${{ steps.extract_branch.outputs.branch }}
 
-      - name: "🚀 docker push adapter-consumer-billing-fast-food:${{ steps.extract_branch.outputs.branch }}"
+      - name: "🚀 docker push adapter-consumer-billing-fast-food"
         run: |
           docker push ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:${{ steps.extract_branch.outputs.branch }}
 
