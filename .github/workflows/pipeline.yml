@@ -33,6 +33,7 @@ jobs:
   cd:
     runs-on: ubuntu-latest
     environment: DEV
+    needs: ci
     steps:
       - name: "🐋 docker login"
         uses: docker/login-action@v3.0.0
