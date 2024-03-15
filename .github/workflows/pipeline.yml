@@ -43,112 +43,34 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+
       - name: "🐋 docker login"
         uses: docker/login-action@v3.0.0
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
 
-      - name: "🖼️ Build docker image adapter-rest-fast-food:develop"
-        if: ${{ contains(github.ref, 'develop') }}
+      - name: "🖼️ Build docker image adapter-rest-fast-food:${{ steps.extract_branch.outputs.branch }}"
         run: |
-          docker build . --file adapter-rest/Dockerfile --tag ${{ secrets.DOCKER_USER }}/adapter-rest-fast-food:develop
+          docker build . --file adapter-rest/Dockerfile --tag ${{ secrets.DOCKER_USER }}/adapter-rest-fast-food:${{ steps.extract_branch.outputs.branch }}
 
-      - name: "🚀 docker push adapter-rest-fast-food:develop"
-        if: ${{ contains(github.ref, 'develop') }}
+      - name: "🚀 docker push adapter-rest-fast-food:${{ steps.extract_branch.outputs.branch }}"
         run: |
-          docker push ${{ secrets.DOCKER_USER }}/adapter-rest-fast-food:develop
+          docker push ${{ secrets.DOCKER_USER }}/adapter-rest-fast-food:${{ steps.extract_branch.outputs.branch }}
 
-      - name: "🖼️ Build docker image adapter-consumer-billing-fast-food:develop"
-        if: ${{ contains(github.ref, 'develop') }}
+      - name: "🖼️ Build docker image adapter-consumer-billing-fast-food:${{ steps.extract_branch.outputs.branch }}"
         run: |
-          docker build . --file adapter-consumer-billing/Dockerfile --tag ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:develop
+          docker build . --file adapter-consumer-billing/Dockerfile --tag ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:${{ steps.extract_branch.outputs.branch }}
 
-      - name: "🚀 docker push adapter-consumer-billing-fast-food:develop"
-        if: ${{ contains(github.ref, 'develop') }}
+      - name: "🚀 docker push adapter-consumer-billing-fast-food:${{ steps.extract_branch.outputs.branch }}"
         run: |
-          docker push ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:develop
+          docker push ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:${{ steps.extract_branch.outputs.branch }}
 
-      - name: "🖼️ Build docker image adapter-rest-fast-food:feature"
-        if: ${{ contains(github.ref, 'feature') }}
-        run: |
-          docker build . --file adapter-rest/Dockerfile --tag ${{ secrets.DOCKER_USER }}/adapter-rest-fast-food:feature
-
-      - name: "🚀 docker push adapter-rest-fast-food:feature"
-        if: ${{ contains(github.ref, 'feature') }}
-        run: |
-          docker push ${{ secrets.DOCKER_USER }}/adapter-rest-fast-food:feature
-
-      - name: "🖼️ Build docker image adapter-consumer-billing-fast-food:feature"
-        if: ${{ contains(github.ref, 'feature') }}
-        run: |
-          docker build . --file adapter-consumer-billing/Dockerfile --tag ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:feature
-
-      - name: "🚀 docker push adapter-consumer-billing-fast-food:feature"
-        if: ${{ contains(github.ref, 'feature') }}
-        run: |
-          docker push ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:feature
-
-      - name: "🖼️ Build docker image adapter-rest-fast-food:hotfix"
-        if: ${{ contains(github.ref, 'hotfix') }}
-        run: |
-          docker build . --file adapter-rest/Dockerfile --tag ${{ secrets.DOCKER_USER }}/adapter-rest-fast-food:hotfix
-
-      - name: "🚀 docker push adapter-rest-fast-food:hotfix"
-        if: ${{ contains(github.ref, 'hotfix') }}
-        run: |
-          docker push ${{ secrets.DOCKER_USER }}/adapter-rest-fast-food:hotfix
-
-      - name: "🖼️ Build docker image adapter-consumer-billing-fast-food:hotfix"
-        if: ${{ contains(github.ref, 'hotfix') }}
-        run: |
-          docker build . --file adapter-consumer-billing/Dockerfile --tag ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:hotfix
-
-      - name: "🚀 docker push adapter-consumer-billing-fast-food:hotfix"
-        if: ${{ contains(github.ref, 'hotfix') }}
-        run: |
-          docker push ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:hotfix
-
-      - name: "🖼️ Build docker image adapter-rest-fast-food:master"
-        if: ${{ contains(github.ref, 'master') }}
-        run: |
-          docker build . --file adapter-rest/Dockerfile --tag ${{ secrets.DOCKER_USER }}/adapter-rest-fast-food:master
-
-      - name: "🚀 docker push adapter-rest-fast-food:master"
-        if: ${{ contains(github.ref, 'master') }}
-        run: |
-          docker push ${{ secrets.DOCKER_USER }}/adapter-rest-fast-food:master
-
-      - name: "🖼️ Build docker image adapter-consumer-billing-fast-food:master"
-        if: ${{ contains(github.ref, 'master') }}
-        run: |
-          docker build . --file adapter-consumer-billing/Dockerfile --tag ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:master
-
-      - name: "🚀 docker push adapter-consumer-billing-fast-food:master"
-        if: ${{ contains(github.ref, 'master') }}
-        run: |
-          docker push ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:master
-
-      - name: "🖼️ Build docker image adapter-rest-fast-food:release"
-        if: ${{ contains(github.ref, 'release') }}
-        run: |
-          docker build . --file adapter-rest/Dockerfile --tag ${{ secrets.DOCKER_USER }}/adapter-rest-fast-food:release
-
-      - name: "🚀 docker push adapter-rest-fast-food:release"
-        if: ${{ contains(github.ref, 'release') }}
-        run: |
-          docker push ${{ secrets.DOCKER_USER }}/adapter-rest-fast-food:release
-
-      - name: "🖼️ Build docker image adapter-consumer-billing-fast-food:release"
-        if: ${{ contains(github.ref, 'release') }}
-        run: |
-          docker build . --file adapter-consumer-billing/Dockerfile --tag ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:release
-
-      - name: "🚀 docker push adapter-consumer-billing-fast-food:release"
-        if: ${{ contains(github.ref, 'release') }}
-        run: |
-          docker push ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:release
-
+      
       
 
 
