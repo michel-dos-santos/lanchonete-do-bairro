@@ -9,3 +9,11 @@ jobs:
     environment: DEV
     steps:
       - uses: actions/checkout@v3
+
+      - name: "🚀 docker push adapter-rest-fast-food"
+        run: |
+          docker push ${{ secrets.DOCKER_USER }}/adapter-rest-fast-food:develop
+
+      - name: "🚀 docker push adapter-consumer-billing-fast-food"
+        run: |
+          docker push ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:develop

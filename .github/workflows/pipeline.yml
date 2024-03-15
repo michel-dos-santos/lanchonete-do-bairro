@@ -21,6 +21,7 @@ jobs:
   build:
     needs: code-analisys
     uses: ./.github/workflows/build.yml
+    secrets: inherit
   publish-docker-feature:
     needs: build
     if: ${{ contains(github.ref, 'feature') }}
@@ -73,24 +74,3 @@ jobs:
 
 
 
-      - name: "🐋 docker login"
-        uses: docker/login-action@v3.0.0
-        with:
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-
-      - name: "🖼️ build docker image adapter-rest-fast-food"
-        run: |
-          docker build . --file adapter-rest/Dockerfile --tag ${{ secrets.DOCKER_USER }}/adapter-rest-fast-food:latest
-
-      - name: "🚀 docker push adapter-rest-fast-food"
-        run: |
-          docker push ${{ secrets.DOCKER_USER }}/adapter-rest-fast-food:latest
-
-      - name: "🖼️ build docker image adapter-consumer-billing-fast-food"
-        run: |
-          docker build . --file adapter-consumer-billing/Dockerfile --tag ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:latest
-
-      - name: "🚀 docker push adapter-consumer-billing-fast-food"
-        run: |
-          docker push ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:latest
