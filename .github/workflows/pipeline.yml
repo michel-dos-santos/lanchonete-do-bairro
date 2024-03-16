@@ -92,7 +92,6 @@ jobs:
           docker push ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:${{ steps.extract_branch.outputs.branch }}
 
       - name: "⚙️ Configure AWS credentials"
-        if: ${{ contains(github.ref, 'develop') }}
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
@@ -100,19 +99,16 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: "🛠 Update kube config"
-        if: ${{ contains(github.ref, 'develop') }}
         run: |
           aws eks update-kubeconfig --name lanchonete-do-bairro-eks-cluster --region ${{ secrets.AWS_REGION }}
 
       - name: "✅ Checkout ymls infra"
-        if: ${{ contains(github.ref, 'develop') }}
         uses: actions/checkout@v3
         with:
           repository: michel-dos-santos/lanchonete-do-bairro.infra-k8s
           path: './infra'
 
       - name: "🚀 Deploy image to Amazon EKS"
-        if: ${{ contains(github.ref, 'develop') }}
         run: |
           kubectl delete secret dynamic-secrets \
             --ignore-not-found \
