@@ -125,7 +125,8 @@ jobs:
       - name: "Eco teste"
         if: ${{ contains(github.ref, 'develop') }}
         run: |
-          kubectl get nodes -v=10
+          kubectl cluster-info \
+          && kubectl get nodes -v=10
 
       - name: "Deploy image to Amazon EKS"
         if: ${{ contains(github.ref, 'develop') }}
