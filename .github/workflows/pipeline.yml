@@ -100,24 +100,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_ACCESS_SECRET }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: "Login to Amazon ECR"
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
-
-      - name: "Get identity"
-        if: ${{ contains(github.ref, 'develop') }}
-        run: |
-          aws sts get-caller-identity
-
       - name: "Update kube config"
         if: ${{ contains(github.ref, 'develop') }}
         run: |
           aws eks update-kubeconfig --name lanchonete-do-bairro-eks-cluster --region ${{ secrets.AWS_REGION }}
-
-      - name: "kubectl config view"
-        if: ${{ contains(github.ref, 'develop') }}
-        run: |
-          kubectl config view --minify
 
       - name: "Checkout ymls infra"
         if: ${{ contains(github.ref, 'develop') }}
@@ -125,13 +111,6 @@ jobs:
         with:
           repository: michel-dos-santos/lanchonete-do-bairro.infra-k8s
           path: './infra'
-
-      - name: "Eco teste"
-        if: ${{ contains(github.ref, 'develop') }}
-        run: |
-          export AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY }} \
-          && kubectl cluster-info dump \
-          && kubectl get nodes -v=10
 
       - name: "Deploy image to Amazon EKS"
         if: ${{ contains(github.ref, 'develop') }}
