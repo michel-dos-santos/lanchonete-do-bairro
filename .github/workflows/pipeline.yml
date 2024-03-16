@@ -114,7 +114,9 @@ jobs:
       - name: "🚀 Deploy image to Amazon EKS"
         if: ${{ contains(github.ref, 'develop') }}
         run: |
-          kubectl create secret generic dynamic-secrets \
+          kubectl delete secret dynamic-secrets \
+            --ignore-not-found
+            && kubectl create secret generic dynamic-secrets \
             --save-config \
             --from-literal=AWS_ACCESS_KEY='${{ secrets.AWS_ACCESS_KEY }}' \
             --from-literal=AWS_ACCESS_SECRET='${{ secrets.AWS_ACCESS_SECRET }}' \
