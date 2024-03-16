@@ -104,8 +104,8 @@ jobs:
         if: ${{ contains(github.ref, 'develop') }}
         run: |
           aws sts get-caller-identity \
-          aws eks update-kubeconfig --name lanchonete-do-bairro-eks-cluster --region ${{ secrets.AWS_REGION }} \
-          kubectl config view --minify
+          && aws eks update-kubeconfig --name lanchonete-do-bairro-eks-cluster --region ${{ secrets.AWS_REGION }} \
+          && kubectl config view --minify
 
       - name: "Checkout ymls infra"
         if: ${{ contains(github.ref, 'develop') }}
