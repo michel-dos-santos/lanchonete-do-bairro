@@ -94,7 +94,7 @@ jobs:
 
       - name: "Install kubectl"
         if: ${{ contains(github.ref, 'develop') }}
-        uses: azure/setup-kubectl@v2
+        uses: azure/setup-kubectl@v4.0.0
         with:
           version: 'v1.29.0'
         id: install
