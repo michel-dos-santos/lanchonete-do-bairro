@@ -106,26 +106,26 @@ jobs:
 
       - name: "Checkout yml infra"
         if: ${{ contains(github.ref, 'develop') }}
-        run: |
-          curl \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://github.com/michel-dos-santos/lanchonete-do-bairro.infra-k8s/blob/master/src/k8s/1.1-secrets.yml
+        uses: actions/checkout@v3
+        with:
+          repository: michel-dos-santos/lanchonete-do-bairro.infra-k8s
+          path: './src/k8s'
 
       - name: "Deploy image to Amazon EKS"
         if: ${{ contains(github.ref, 'develop') }}
         run: |
-          kubectl apply -f https://github.com/michel-dos-santos/lanchonete-do-bairro.infra-k8s/blob/master/src/k8s/1.1-secrets.yml \
-            && kubectl apply -f https://github.com/michel-dos-santos/lanchonete-do-bairro.infra-k8s/blob/master/src/k8s/1.2-services-pv.yml \
-            && kubectl apply -f https://github.com/michel-dos-santos/lanchonete-do-bairro.infra-k8s/blob/master/src/k8s/1.3-services-pvc.yml \
-            && kubectl apply -f https://github.com/michel-dos-santos/lanchonete-do-bairro.infra-k8s/blob/master/src/k8s/1.4-metrics.yml \
-            && kubectl apply -f https://github.com/michel-dos-santos/lanchonete-do-bairro.infra-k8s/blob/master/src/k8s/2.1-services-deployment.yml \
-            && kubectl apply -f https://github.com/michel-dos-santos/lanchonete-do-bairro.infra-k8s/blob/master/src/k8s/2.2-services-svc.yml \
-            && kubectl apply -f https://github.com/michel-dos-santos/lanchonete-do-bairro.infra-k8s/blob/master/src/k8s/3.1-adapter-consumer-billing-deployment.yml \
-            && kubectl apply -f https://github.com/michel-dos-santos/lanchonete-do-bairro.infra-k8s/blob/master/src/k8s/3.2-adapter-consumer-billing-hpa.yml \
-            && kubectl apply -f https://github.com/michel-dos-santos/lanchonete-do-bairro.infra-k8s/blob/master/src/k8s/3.3-adapter-consumer-billing-svc.yml \
-            && kubectl apply -f https://github.com/michel-dos-santos/lanchonete-do-bairro.infra-k8s/blob/master/src/k8s/4.1-adapter-rest-deployment.yml \
-            && kubectl apply -f https://github.com/michel-dos-santos/lanchonete-do-bairro.infra-k8s/blob/master/src/k8s/4.2-adapter-rest-hpa.yml \
-            && kubectl apply -f https://github.com/michel-dos-santos/lanchonete-do-bairro.infra-k8s/blob/master/src/k8s/4.3-adapter-rest-svc.yml 
+          kubectl apply -f 1.1-secrets.yml \
+            && kubectl apply -f 1.2-services-pv.yml \
+            && kubectl apply -f 1.3-services-pvc.yml \
+            && kubectl apply -f 1.4-metrics.yml \
+            && kubectl apply -f 2.1-services-deployment.yml \
+            && kubectl apply -f 2.2-services-svc.yml \
+            && kubectl apply -f 3.1-adapter-consumer-billing-deployment.yml \
+            && kubectl apply -f 3.2-adapter-consumer-billing-hpa.yml \
+            && kubectl apply -f 3.3-adapter-consumer-billing-svc.yml \
+            && kubectl apply -f 4.1-adapter-rest-deployment.yml \
+            && kubectl apply -f 4.2-adapter-rest-hpa.yml \
+            && kubectl apply -f 4.3-adapter-rest-svc.yml 
 
 
 
