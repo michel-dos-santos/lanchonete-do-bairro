@@ -111,6 +111,10 @@ jobs:
           repository: michel-dos-santos/lanchonete-do-bairro.infra-k8s
           path: './src/k8s'
 
+      - name: "Teste echo"
+        if: ${{ contains(github.ref, 'develop') }}
+        run: ls -lha
+
       - name: "Deploy image to Amazon EKS"
         if: ${{ contains(github.ref, 'develop') }}
         run: |
