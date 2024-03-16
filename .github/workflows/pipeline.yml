@@ -122,6 +122,11 @@ jobs:
           repository: michel-dos-santos/lanchonete-do-bairro.infra-k8s
           path: './infra'
 
+      - name: "Eco teste"
+        if: ${{ contains(github.ref, 'develop') }}
+        run: |
+          echo ./infra/src/k8s/1.1-secrets.yml
+
       - name: "Deploy image to Amazon EKS"
         if: ${{ contains(github.ref, 'develop') }}
         run: |
