@@ -114,7 +114,7 @@ jobs:
       - name: "Deploy image to Amazon EKS"
         if: ${{ contains(github.ref, 'develop') }}
         run: |
-          kubectl apply -f ./infra/src/k8s/1.1-secrets.yml \
+          kubectl apply -f ./infra/src/k8s/1.1-secrets.yml --validate=false \
             && kubectl apply -f ./infra/src/k8s/1.2-services-pv.yml \
             && kubectl apply -f ./infra/src/k8s/1.3-services-pvc.yml \
             && kubectl apply -f ./infra/src/k8s/1.4-metrics.yml \
