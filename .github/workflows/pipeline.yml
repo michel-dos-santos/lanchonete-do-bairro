@@ -92,13 +92,6 @@ jobs:
 #       run: |
 #         docker push ${{ secrets.DOCKER_USER }}/adapter-consumer-billing-fast-food:${{ steps.extract_branch.outputs.branch }}
 
-      - name: "Install kubectl"
-        if: ${{ contains(github.ref, 'develop') }}
-        uses: azure/setup-kubectl@v4.0.0
-        with:
-          version: 'v1.29.0'
-        id: install
-
       - name: "Configure AWS credentials"
         if: ${{ contains(github.ref, 'develop') }}
         uses: aws-actions/configure-aws-credentials@v1
