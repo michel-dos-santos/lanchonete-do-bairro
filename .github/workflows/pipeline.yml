@@ -104,32 +104,28 @@ jobs:
         if: ${{ contains(github.ref, 'develop') }}
         run: aws eks update-kubeconfig --name lanchonete-do-bairro-eks-cluster --region ${{ secrets.AWS_REGION }}
 
-      - name: "Checkout yml infra"
+      - name: "Checkout ymls infra"
         if: ${{ contains(github.ref, 'develop') }}
         uses: actions/checkout@v3
         with:
           repository: michel-dos-santos/lanchonete-do-bairro.infra-k8s
           path: './infra'
 
-      - name: "Teste echo"
-        if: ${{ contains(github.ref, 'develop') }}
-        run: ls ./infra/src/k8s
-
       - name: "Deploy image to Amazon EKS"
         if: ${{ contains(github.ref, 'develop') }}
         run: |
-          kubectl apply -f ./src/k8s/1.1-secrets.yml \
-            && kubectl apply -f ./src/k8s/1.2-services-pv.yml \
-            && kubectl apply -f ./src/k8s/1.3-services-pvc.yml \
-            && kubectl apply -f ./src/k8s/1.4-metrics.yml \
-            && kubectl apply -f ./src/k8s/2.1-services-deployment.yml \
-            && kubectl apply -f ./src/k8s/2.2-services-svc.yml \
-            && kubectl apply -f ./src/k8s/3.1-adapter-consumer-billing-deployment.yml \
-            && kubectl apply -f ./src/k8s/3.2-adapter-consumer-billing-hpa.yml \
-            && kubectl apply -f ./src/k8s/3.3-adapter-consumer-billing-svc.yml \
-            && kubectl apply -f ./src/k8s/4.1-adapter-rest-deployment.yml \
-            && kubectl apply -f ./src/k8s/4.2-adapter-rest-hpa.yml \
-            && kubectl apply -f ./src/k8s/4.3-adapter-rest-svc.yml 
+          kubectl apply -f ./infra/src/k8s/1.1-secrets.yml \
+            && kubectl apply -f ./infra/src/k8s/1.2-services-pv.yml \
+            && kubectl apply -f ./infra/src/k8s/1.3-services-pvc.yml \
+            && kubectl apply -f ./infra/src/k8s/1.4-metrics.yml \
+            && kubectl apply -f ./infra/src/k8s/2.1-services-deployment.yml \
+            && kubectl apply -f ./infra/src/k8s/2.2-services-svc.yml \
+            && kubectl apply -f ./infra/src/k8s/3.1-adapter-consumer-billing-deployment.yml \
+            && kubectl apply -f ./infra/src/k8s/3.2-adapter-consumer-billing-hpa.yml \
+            && kubectl apply -f ./infra/src/k8s/3.3-adapter-consumer-billing-svc.yml \
+            && kubectl apply -f ./infra/src/k8s/4.1-adapter-rest-deployment.yml \
+            && kubectl apply -f ./infra/src/k8s/4.2-adapter-rest-hpa.yml \
+            && kubectl apply -f ./infra/src/k8s/4.3-adapter-rest-svc.yml 
 
 
 
