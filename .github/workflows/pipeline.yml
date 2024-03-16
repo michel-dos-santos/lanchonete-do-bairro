@@ -115,9 +115,8 @@ jobs:
         if: ${{ contains(github.ref, 'develop') }}
         run: |
           kubectl delete secret dynamic-secrets \
-            --ignore-not-found
+            --ignore-not-found \
             && kubectl create secret generic dynamic-secrets \
-            --save-config \
             --from-literal=AWS_ACCESS_KEY='${{ secrets.AWS_ACCESS_KEY }}' \
             --from-literal=AWS_ACCESS_SECRET='${{ secrets.AWS_ACCESS_SECRET }}' \
             --from-literal=AWS_REGION='${{ secrets.AWS_REGION }}' \
