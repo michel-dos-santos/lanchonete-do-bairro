@@ -107,7 +107,7 @@ jobs:
       - name: "Teste Comando"
         if: ${{ contains(github.ref, 'develop') }}
         run: |
-          kubectl cluster-info dump
+          aws sts get-caller-identity
 
       - name: "Deploy image to Amazon EKS"
         if: ${{ contains(github.ref, 'develop') }}
