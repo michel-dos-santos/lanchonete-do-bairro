@@ -113,7 +113,7 @@ jobs:
 
       - name: "Teste echo"
         if: ${{ contains(github.ref, 'develop') }}
-        run: ls -lha
+        run: ls /src
 
       - name: "Deploy image to Amazon EKS"
         if: ${{ contains(github.ref, 'develop') }}
