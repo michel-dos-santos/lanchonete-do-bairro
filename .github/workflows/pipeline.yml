@@ -94,7 +94,7 @@ jobs:
 
       - name: "Install kubectl"
         if: ${{ contains(github.ref, 'develop') }}
-        uses: azure/setup-kubectl@v1
+        uses: azure/setup-kubectl@v2
         with:
           version: 'v1.29.0'
         id: install
@@ -110,6 +110,11 @@ jobs:
       - name: "Update kube config"
         if: ${{ contains(github.ref, 'develop') }}
         run: aws eks update-kubeconfig --name lanchonete-do-bairro-eks-cluster --region ${{ secrets.AWS_REGION }}
+
+      - name: "Teste Comando"
+        if: ${{ contains(github.ref, 'develop') }}
+        run: |
+          kubectl cluster-info
 
       - name: "Deploy image to Amazon EKS"
         if: ${{ contains(github.ref, 'develop') }}
@@ -135,6 +140,12 @@ jobs:
             && kubectl apply -f https://github.com/michel-dos-santos/lanchonete-do-bairro.infra-k8s/blob/master/src/k8s/4.1-adapter-rest-deployment.yml \
             && kubectl apply -f https://github.com/michel-dos-santos/lanchonete-do-bairro.infra-k8s/blob/master/src/k8s/4.2-adapter-rest-hpa.yml \
             && kubectl apply -f https://github.com/michel-dos-santos/lanchonete-do-bairro.infra-k8s/blob/master/src/k8s/4.3-adapter-rest-svc.yml 
+
+]
+
+
+
+
 
 
  #
