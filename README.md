@@ -9,6 +9,8 @@
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
+![Coverage](.github/badges/jacoco.svg)
+![Branches](.github/badges/branches.svg)
 
 </div>
 
