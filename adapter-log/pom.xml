@@ -12,20 +12,10 @@
     <artifactId>adapter-log</artifactId>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-cloud.version>2022.0.4</spring-cloud.version>
-
-        <!-- Sonar -->
-        <sonar.language>java</sonar.language>
-        <sonar.sources>src/main/java</sonar.sources>
-        <sonar.tests>src/test/java</sonar.tests>
-        <sonar.java.binaries>target</sonar.java.binaries>
-        <sonar.projectKey></sonar.projectKey>
-        <sonar.login></sonar.login>
-        <sonar.host.url></sonar.host.url>
-        <sonar.exclusions></sonar.exclusions>
     </properties>
 
     <dependencies>
@@ -44,12 +34,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
 
     </dependencies>

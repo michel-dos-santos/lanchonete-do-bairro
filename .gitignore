@@ -1,8 +1,12 @@
 # Project exclude paths
-*/target/
+**/target
 */logs/
+*/n8n/
+*/postgres/
 .idea/
 *.log
 .idea
 *.iml
 *.env
+/data/n8n/*
+/minikube-linux-amd64

@@ -19,6 +19,11 @@ ENV DB_USER user
 ENV DB_PASSWORD password
 ENV MERCADO_PAGO_URL url
 ENV ITAU_URL url
+ENV AWS_ACCESS_KEY key
+ENV AWS_ACCESS_SECRET secret
+ENV AWS_REGION region
+ENV AWS_COGNITO_CLIENT_ID clientID
+ENV AWS_COGNITO_USER_POOL_ID userPoolId
 
 # Defina o diretório de trabalho dentro do contêiner
 WORKDIR /app
@@ -30,4 +35,4 @@ COPY --from=builder /app .
 EXPOSE 8081
 
 # Comando para executar a aplicação Spring Boot
-ENTRYPOINT [ "java", "-jar", "/app/adapter-rest/target/adapter-rest-1.1.0.jar", "--spring.profiles.active=${PROFILE}", "--spring.datasource.url=${DB_URL}", "--spring.datasource.username=${DB_USER}", "--spring.datasource.password=${DB_PASSWORD}", "--api.mercadopago.url=${MERCADO_PAGO_URL}", "--api.itau.url=${ITAU_URL}" ]
+ENTRYPOINT [ "java", "-jar", "/app/adapter-rest/target/adapter-rest-1.1.0.jar", "--spring.profiles.active=${PROFILE}", "--spring.datasource.url=${DB_URL}", "--spring.datasource.username=${DB_USER}", "--spring.datasource.password=${DB_PASSWORD}", "--api.mercadopago.url=${MERCADO_PAGO_URL}", "--api.itau.url=${ITAU_URL}", "--aws.access-key=${AWS_ACCESS_KEY}", "--aws.access-secret=${AWS_ACCESS_SECRET}", "--aws.default-region=${AWS_REGION}", "--cognito.clientId=${AWS_COGNITO_CLIENT_ID}", "--cognito.userPoolId=${AWS_COGNITO_USER_POOL_ID}" ]
