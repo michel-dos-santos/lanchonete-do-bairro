@@ -1,5 +1,6 @@
 # Project exclude paths
 **/target
+/target
 */logs/
 */n8n/
 */postgres/
